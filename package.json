@@ -8,7 +8,7 @@
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
   },
-  "homepage": "https://github.com/seanle0405/filmsfinder-frontend.git",
+  "homepage": "https://seanle0405.github.io/filmsfinder-frontend/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

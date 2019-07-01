@@ -27,17 +27,17 @@ class Update extends React.Component {
 		.then(response => response.json())
 		.then(responseJSON => console.log(responseJSON))
 		.catch(err => console.log(err))
-		
+
 		this.setState({
 			name : ''
 		})
 	}
-	
+
 
 	render(){
 		return(
 			<form onSubmit = {this.handleSubmit}>
-			<input 
+			<input
 			type ="text"
 			id = 'name'
 			onChange = {this.handleChange}

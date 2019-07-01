@@ -9,7 +9,7 @@ let baseURL = `http://localhost:3003/filmfinder`
 
 class App extends Component {
 
-/// function to get all movies from collection using test route
+  //function below to get all movies from collection using test route 
   getMovies = () => {
     fetch(baseURL + '/test')
     .then(data => data.json(),
@@ -19,7 +19,7 @@ class App extends Component {
   componentDidMount() {
     this.getMovies()
   }
-//////
+  //function above to get all movies from collection using test route
 
   render(){
     return (

@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { Component } from 'react'
 const baseURL = 'http://localhost:3003/'
 
-class Update extends React.Component {
+class Update extends Component {
 		state = {
 			name : ''
 

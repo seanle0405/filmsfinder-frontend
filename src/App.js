@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header.js'
 import Update from './components/update.js'
-
-
-
-
 
 let baseURL = `http://localhost:3003/filmfinder`
 
 class App extends Component {
-
 
 /// function to get all movies from collection using test route
   getMovies = () => {
@@ -25,15 +21,10 @@ class App extends Component {
 //////
 
   render(){
-
-
     return (
       <div className="App">
-      <h1>Films Finder</h1>
-        <Update
-
-        />
-
+        <Header />
+        <Update />
       </div>
     );
   }

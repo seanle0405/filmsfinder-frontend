@@ -1,28 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Update from './components/update.js'
 
-class App extends React.Component {
+
+
+
+
+let baseURL = `http://localhost:3003/filmfinder`
+
+class App extends Component {
+
+
+/// function to get all movies from collection using test route
+  getMovies = () => {
+    fetch(baseURL + '/test')
+    .then(data => data.json(),
+    err => console.log(err))
+    .then(parsedData => console.log(parsedData))
+  }
+  componentDidMount() {
+    this.getMovies()
+  }
+//////
+
   render(){
+
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <h1>Films Finder</h1>
+        <Update
+
+        />
+
       </div>
     );
-  }  
+  }
 }
 
 export default App;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header.js'
+import Search from './components/Search.js'
 import Update from './components/update.js'
 
 let baseURL = `http://localhost:3003/filmfinder`
@@ -24,6 +25,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <Search />
         <Update />
       </div>
     );

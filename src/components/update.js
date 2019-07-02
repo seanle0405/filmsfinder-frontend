@@ -11,8 +11,10 @@ class Update extends Component {
 	handleChange = (event) => {
 		this.setState({
 			[event.target.id] : event.target.value
+		},() => {
+			console.log(this.state.name)
 		})
-		console.log(this.state.name)
+
 	}
 
 	handleSubmit = (event) => {

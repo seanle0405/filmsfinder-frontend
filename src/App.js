@@ -10,7 +10,7 @@ import CreateAccount from './components/CreateAccount.js'
 import SignIn from './components/SignIn.js'
 import Update from './components/update.js'
 
-<<<<<<< HEAD
+
 
 
 
@@ -36,9 +36,8 @@ let cityParam = `&city_ids=` + cityId
 let getRecentReleasesURL = showtimesBaseURL+moviesParam+showtimesAPIKey+releaseDateParam+countryParam+fieldsParam+cityParam
 
 
-=======
+
 let baseURL = `http://localhost:3003/filmfinder`
->>>>>>> ed35adbfdafec5ca627f28fca05fc4010c1a4793
 
 class App extends Component {
   state = {
@@ -46,17 +45,15 @@ class App extends Component {
     userDiary: '',
     splash: '',
 
-<<<<<<< HEAD
   }
 
 /// function to get all movies from collection using test route
   getUserData = (userID) => {
     fetch(baseURL + `getUser/${this.state.userID}`)
-=======
+
   //function below to get all movies from collection using test route
   getMovies = () => {
     fetch(baseURL + '/test')
->>>>>>> ed35adbfdafec5ca627f28fca05fc4010c1a4793
     .then(data => data.json(),
     err => console.log(err))
     .then(parsedData => this.setState({userDiary: parsedData}, () => {
@@ -64,7 +61,7 @@ class App extends Component {
     }))
   }
 
-<<<<<<< HEAD
+
   getRecentReleases = () => {
     fetch(getRecentReleasesURL)
     .then(data => data.json(),
@@ -74,8 +71,7 @@ class App extends Component {
     }))
   }
 
-=======
->>>>>>> ed35adbfdafec5ca627f28fca05fc4010c1a4793
+
   componentDidMount() {
     this.getRecentReleases()
     this.getUserData()

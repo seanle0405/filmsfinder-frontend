@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header.js'
+import Search from './components/Search.js'
+import MyFilms from './components/MyFilms.js'
+import FilmDetail from './components/FilmDetail.js'
+import CreateAccount from './components/CreateAccount.js'
+import SignIn from './components/SignIn.js'
 import Update from './components/update.js'
 
+<<<<<<< HEAD
 
 
 
@@ -27,6 +36,9 @@ let cityParam = `&city_ids=` + cityId
 let getRecentReleasesURL = showtimesBaseURL+moviesParam+showtimesAPIKey+releaseDateParam+countryParam+fieldsParam+cityParam
 
 
+=======
+let baseURL = `http://localhost:3003/filmfinder`
+>>>>>>> ed35adbfdafec5ca627f28fca05fc4010c1a4793
 
 class App extends Component {
   state = {
@@ -34,11 +46,17 @@ class App extends Component {
     userDiary: '',
     splash: '',
 
+<<<<<<< HEAD
   }
 
 /// function to get all movies from collection using test route
   getUserData = (userID) => {
     fetch(baseURL + `getUser/${this.state.userID}`)
+=======
+  //function below to get all movies from collection using test route
+  getMovies = () => {
+    fetch(baseURL + '/test')
+>>>>>>> ed35adbfdafec5ca627f28fca05fc4010c1a4793
     .then(data => data.json(),
     err => console.log(err))
     .then(parsedData => this.setState({userDiary: parsedData}, () => {
@@ -46,6 +64,7 @@ class App extends Component {
     }))
   }
 
+<<<<<<< HEAD
   getRecentReleases = () => {
     fetch(getRecentReleasesURL)
     .then(data => data.json(),
@@ -55,23 +74,26 @@ class App extends Component {
     }))
   }
 
+=======
+>>>>>>> ed35adbfdafec5ca627f28fca05fc4010c1a4793
   componentDidMount() {
     this.getRecentReleases()
     this.getUserData()
   }
-//////
+  //function above to get all movies from collection using test route
 
   render(){
-
-
     return (
-      <div className="App">
-      <h1>Films Finder</h1>
-        <Update
-
-        />
-
-      </div>
+      <Router>
+        <div className="App">
+          <Route exact path='/' component={ Search } />
+          <Route path='/myfilms' component={ MyFilms } />
+          <Route path='/filmdetail' component={ FilmDetail } />
+          <Route path='/createaccount' component={ CreateAccount } />
+          <Route path='/signin' component={ SignIn } />
+          <Route path='/update' component={ Update } />
+        </div>
+      </Router>
     );
   }
 }

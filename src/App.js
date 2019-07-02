@@ -15,7 +15,6 @@ import Update from './components/update.js'
 
 
 
-let baseURL = `http://localhost:3003/filmfinder/`
 
 
 let cityId = 3945
@@ -37,7 +36,7 @@ let getRecentReleasesURL = showtimesBaseURL+moviesParam+showtimesAPIKey+releaseD
 
 
 
-let baseURL = `http://localhost:3003/filmfinder`
+let baseURL = `http://localhost:3003/filmfinder/`
 
 class App extends Component {
   state = {
@@ -50,6 +49,12 @@ class App extends Component {
 /// function to get all movies from collection using test route
   getUserData = (userID) => {
     fetch(baseURL + `getUser/${this.state.userID}`)
+    .then(data => data.json(),
+    err => console.log(err))
+    .then(parsedData => this.setState({userDiary: parsedData}, () => {
+      console.log(this.state.userDiary);
+    }))
+  }
 
   //function below to get all movies from collection using test route
   getMovies = () => {
@@ -72,10 +77,11 @@ class App extends Component {
   }
 
 
-  componentDidMount() {
-    this.getRecentReleases()
+  componentDidMount = () => {
+    this.getRecentReleases();
     this.getUserData()
   }
+
   //function above to get all movies from collection using test route
 
   render(){

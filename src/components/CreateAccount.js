@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import Header from './Header.js'
 
 class CreateAccount extends Component {
+  state = {
+    username: '',
+    password: ''
+  }
   render() {
     return (
       <div>
@@ -12,6 +16,8 @@ class CreateAccount extends Component {
             <input
               type='text'
               name='username'
+              onChange={this.handleChange}
+              value={this.state.username}
               placeholder='Username'
             />
           </label>

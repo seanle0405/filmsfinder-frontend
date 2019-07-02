@@ -21,6 +21,7 @@ class App extends Component {
     err => console.log(err))
     .then(parsedData => console.log(parsedData))
   }
+
   componentDidMount() {
     this.getMovies()
   }

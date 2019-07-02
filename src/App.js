@@ -56,8 +56,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // this.getRecentReleases()
-    // this.getUserData()
+    this.getRecentReleases()
+    this.getUserData()
   }
 //////
 

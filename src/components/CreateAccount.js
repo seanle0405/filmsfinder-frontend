@@ -48,7 +48,7 @@ class CreateAccount extends Component {
           <label>
             <input
               type='password'
-              id='username'
+              id='password'
               name='password'
               onChange={this.handleChange}
               value={this.state.password}

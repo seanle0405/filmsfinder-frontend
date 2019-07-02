@@ -48,7 +48,7 @@ class App extends Component {
             path='/createaccount'
             render={(routeProps) =>
               (<CreateAccount {...routeProps}
-                baseURL={this.baseURL}
+                baseURL={baseURL}
                 handleAddUser={this.handleAddUser}
                />)}
           />

@@ -11,7 +11,7 @@ class CreateAccount extends Component {
   }
   handleSubmit = (event) => {
     event.preventDefault();
-    fetch(this.props.baseURL + '/newuser', {
+    fetch(this.props.baseURL + '/users', {
       method: 'POST',
       body:
         JSON.stringify({
@@ -34,7 +34,7 @@ class CreateAccount extends Component {
       <div>
       <Header />
         <h2>Create Account</h2>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <label>
             <input
               type='text'

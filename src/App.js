@@ -4,7 +4,9 @@ import './App.css';
 import Header from './components/Header.js'
 import Search from './components/Search.js'
 import MyFilms from './components/MyFilms.js'
-import FilmDetail from './components/FilmDetail'
+import FilmDetail from './components/FilmDetail.js'
+import CreateAccount from './components/CreateAccount.js'
+import SignIn from './components/SignIn.js'
 import Update from './components/update.js'
 
 let baseURL = `http://localhost:3003/filmfinder`
@@ -31,6 +33,8 @@ class App extends Component {
         <Update />
         <MyFilms />
         <FilmDetail />
+        <CreateAccount />
+        <SignIn />
       </div>
     );
   }

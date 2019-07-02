@@ -40,6 +40,8 @@ let baseURL = `http://localhost:3003/filmfinder/`
 
 class App extends Component {
   state = {
+    users: []
+  }
     userID: 'testUserName',
     userDiary: '',
     splash: '',
@@ -84,6 +86,14 @@ class App extends Component {
 
   //function above to get all movies from collection using test route
 
+  handleAddUser = (user) => {
+    const copyUsers = [...this.state.users]
+    copyUsers.push(user)
+    this.setState({
+      users: copyUsers
+    })
+  }
+
   render(){
     return (
       <Router>
@@ -91,7 +101,14 @@ class App extends Component {
           <Route exact path='/' component={ Search } />
           <Route path='/myfilms' component={ MyFilms } />
           <Route path='/filmdetail' component={ FilmDetail } />
-          <Route path='/createaccount' component={ CreateAccount } />
+          <Route
+            path='/createaccount'
+            render={(routeProps) =>
+              (<CreateAccount {...routeProps}
+                baseURL={baseURL}
+                handleAddUser={this.handleAddUser}
+               />)}
+          />
           <Route path='/signin' component={ SignIn } />
           <Route path='/update' component={ Update } />
         </div>

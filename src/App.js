@@ -24,7 +24,7 @@ let cityParam = `&city_ids=` + cityId
 
 
 
-let getRecentMovies = showtimesBaseURL+moviesParam+showtimesAPIKey+releaseDateParam+countryParam+fieldsParam+cityParam
+let getRecentReleases = showtimesBaseURL+moviesParam+showtimesAPIKey+releaseDateParam+countryParam+fieldsParam+cityParam
 
 
 
@@ -33,7 +33,7 @@ class App extends Component {
 
 /// function to get all movies from collection using test route
   getMovies = () => {
-    fetch(getRecentMovies)
+    fetch(getRecentReleases)
     .then(data => data.json(),
     err => console.log(err))
     .then(parsedData => console.log(parsedData))

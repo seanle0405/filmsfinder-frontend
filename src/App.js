@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Update from './components/update.js'
 
@@ -19,6 +18,7 @@ class App extends Component {
     err => console.log(err))
     .then(parsedData => console.log(parsedData))
   }
+  
   componentDidMount() {
     this.getMovies()
   }

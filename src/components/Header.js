@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 class Header extends Component {
   state = {
@@ -6,9 +7,17 @@ class Header extends Component {
   }
   render() {
     return (
-      <h1>Films Finder</h1>
+      <div>
+        <h1>Films Finder</h1>
+        <Link to='/'>{ 'Home' }</Link>
+        <br/>
+        {/*if logged out, .inks for signup an create account will render*/}
+        <Link to='/SignIn'>{ 'Sign In' }</Link>
+        <Link to='/CreateAccount'>{ 'Create Account' }</Link>
+        {/*if logged in, username and link to log out will render*/}
+      </div>
     )
   }
 }
 
-export default Header 
+export default Header

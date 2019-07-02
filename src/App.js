@@ -6,7 +6,7 @@ import Update from './components/update.js'
 
 
 
-let baseURL = `http://localhost:3003/filmfinder`
+let baseURL = `http://localhost:3003/filmfinder/`
 
 
 let cityId = 3945
@@ -24,23 +24,40 @@ let cityParam = `&city_ids=` + cityId
 
 
 
-let getRecentReleases = showtimesBaseURL+moviesParam+showtimesAPIKey+releaseDateParam+countryParam+fieldsParam+cityParam
+let getRecentReleasesURL = showtimesBaseURL+moviesParam+showtimesAPIKey+releaseDateParam+countryParam+fieldsParam+cityParam
 
 
 
 class App extends Component {
+  state = {
+    userID: 'testUserName',
+    userDiary: '',
+    splash: '',
 
+  }
 
 /// function to get all movies from collection using test route
-  getMovies = () => {
-    fetch(getRecentReleases)
+  getUserData = (userID) => {
+    fetch(baseURL + `getUser/${this.state.userID}`)
     .then(data => data.json(),
     err => console.log(err))
-    .then(parsedData => console.log(parsedData))
+    .then(parsedData => this.setState({userDiary: parsedData}, () => {
+      console.log(this.state.userDiary);
+    }))
+  }
+
+  getRecentReleases = () => {
+    fetch(getRecentReleasesURL)
+    .then(data => data.json(),
+    err => console.log(err))
+    .then(parsedData => this.setState({splash: parsedData}, () => {
+      console.log(this.state.splash)
+    }))
   }
 
   componentDidMount() {
-    this.getMovies()
+    // this.getRecentReleases()
+    // this.getUserData()
   }
 //////
 

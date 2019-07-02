@@ -3,13 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header.js'
 import Search from './components/Search.js'
+import MyFilms from './components/MyFilms.js'
 import Update from './components/update.js'
 
 let baseURL = `http://localhost:3003/filmfinder`
 
 class App extends Component {
 
-  //function below to get all movies from collection using test route 
+  //function below to get all movies from collection using test route
   getMovies = () => {
     fetch(baseURL + '/test')
     .then(data => data.json(),
@@ -27,6 +28,7 @@ class App extends Component {
         <Header />
         <Search />
         <Update />
+        <MyFilms />
       </div>
     );
   }

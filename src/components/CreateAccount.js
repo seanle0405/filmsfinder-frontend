@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import Header from './Header.js'
 
 class CreateAccount extends Component {
   render() {
     return (
       <div>
+      <Header />
         <h2>Create Account</h2>
         <form>
           <label>

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Header from './Header.js'
+
 const baseURL = 'http://localhost:3003/'
 
 class Update extends Component {
@@ -36,16 +38,18 @@ class Update extends Component {
 
 	render(){
 		return(
-			<form onSubmit = {this.handleSubmit}>
-			<input
-			type ="text"
-			id = 'name'
-			onChange = {this.handleChange}
+			<div>
+				<Header />
+				<form onSubmit = {this.handleSubmit}>
+				<input
+				type ="text"
+				id = 'name'
+				onChange = {this.handleChange}
 
-			/>
-			<input type="submit" value="update"/>
-			</form>
-
+				/>
+				<input type="submit" value="update"/>
+				</form>
+			</div>
 		)
 	}
 }

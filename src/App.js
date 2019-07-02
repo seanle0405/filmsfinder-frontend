@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/Header.js'
 import Search from './components/Search.js'
 import MyFilms from './components/MyFilms.js'
+import FilmDetail from './components/FilmDetail'
 import Update from './components/update.js'
 
 let baseURL = `http://localhost:3003/filmfinder`
@@ -29,6 +30,7 @@ class App extends Component {
         <Search />
         <Update />
         <MyFilms />
+        <FilmDetail />
       </div>
     );
   }

@@ -6,8 +6,12 @@ let showtimesAPIKey = `?apikey=dHNYEAlSVxOXC4Eqy6b8aufIXC7utYnu`
 class Search extends Component {
   state = {
 <<<<<<< HEAD
+<<<<<<< HEAD
     title :'' ,
   
+=======
+    search: ''
+>>>>>>> 1b4196a355a217978fc6ecb531551cae2adaa2e5
 =======
     search: ''
 >>>>>>> 1b4196a355a217978fc6ecb531551cae2adaa2e5
@@ -16,6 +20,7 @@ class Search extends Component {
   handleChange = (event) => {
     this.setState({
       [event.target.id] : event.target.value
+<<<<<<< HEAD
 <<<<<<< HEAD
       
     })
@@ -27,6 +32,8 @@ class Search extends Component {
     fetch()
   }
 =======
+=======
+>>>>>>> 1b4196a355a217978fc6ecb531551cae2adaa2e5
     })
   }
 
@@ -39,16 +46,22 @@ class Search extends Component {
   }
 
 
+<<<<<<< HEAD
+>>>>>>> 1b4196a355a217978fc6ecb531551cae2adaa2e5
+=======
 >>>>>>> 1b4196a355a217978fc6ecb531551cae2adaa2e5
   render() {
     return (
       <div>
         <Header />
 <<<<<<< HEAD
+<<<<<<< HEAD
         <form onSubmit = {this.handleSubmit}>
           <label > 
             Film title :
 =======
+=======
+>>>>>>> 1b4196a355a217978fc6ecb531551cae2adaa2e5
         <form
           onSubmit={this.handleSubmit}
           >
@@ -59,6 +72,7 @@ class Search extends Component {
             type='text'
             placeholder='Search Films'
             />
+<<<<<<< HEAD
 >>>>>>> 1b4196a355a217978fc6ecb531551cae2adaa2e5
           </label>
             <input 
@@ -70,6 +84,10 @@ class Search extends Component {
           <input type='submit' value='Search' />
           
 
+=======
+          </label>
+          <input type='submit' value='Search' />
+>>>>>>> 1b4196a355a217978fc6ecb531551cae2adaa2e5
         </form>
 
         {/* RETURNED RESULTS GO HERE */}

@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { Component } from 'react'
+import Header from './Header.js'
+
 const baseURL = 'http://localhost:3003/'
 
-class Update extends React.Component {
+class Update extends Component {
 		state = {
 			name : ''
-
 		}
+
 	handleChange = (event) => {
 		this.setState({
 			[event.target.id] : event.target.value
+		},() => {
+			console.log(this.state.name)
 		})
-		console.log(this.state.name)
+
 	}
+
 	handleSubmit = (event) => {
 		event.preventDefault()
 		console.log(this.state.name)
@@ -27,25 +32,27 @@ class Update extends React.Component {
 		.then(response => response.json())
 		.then(responseJSON => console.log(responseJSON))
 		.catch(err => console.log(err))
-		
+
 		this.setState({
 			name : ''
 		})
 	}
-	
+
 
 	render(){
 		return(
-			<form onSubmit = {this.handleSubmit}>
-			<input 
-			type ="text"
-			id = 'name'
-			onChange = {this.handleChange}
+			<div>
+				<Header />
+				<form onSubmit = {this.handleSubmit}>
+				<input
+				type ="text"
+				id = 'name'
+				onChange = {this.handleChange}
 
-			/>
-			<input type="submit" value="update"/>
-			</form>
-
+				/>
+				<input type="submit" value="update"/>
+				</form>
+			</div>
 		)
 	}
 }

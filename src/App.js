@@ -10,17 +10,9 @@ import CreateAccount from './components/CreateAccount.js'
 import SignIn from './components/SignIn.js'
 import Update from './components/update.js'
 
-
-
-
-
-
 let baseURL = `http://localhost:3003/filmfinder/`
-
-
 let cityId = 3945
 let releaseDate = '06-01-19'
-
 let showtimesBaseURL = `https://api.internationalshowtimes.com/v4/`
 let moviesParam = 'movies/'
 let timesParam = 'showtimes/'
@@ -29,30 +21,20 @@ let releaseDateParam = '&release_date_from=' + releaseDate
 let countryParam = `&countries=US`
 let fieldsParam = `&all_fields=true`
 let cityParam = `&city_ids=` + cityId
-
-
-
-
 let getRecentReleasesURL = showtimesBaseURL+moviesParam+showtimesAPIKey+releaseDateParam+countryParam+fieldsParam+cityParam
-
-
-
-let baseURL = `http://localhost:3003/filmfinder`
 
 class App extends Component {
   state = {
-    users: []
-  }
+    users: [],
     userID: 'testUserName',
     userDiary: '',
-    splash: '',
-
+    splash: ''
   }
 
 /// function to get all movies from collection using test route
   getUserData = (userID) => {
     fetch(baseURL + `getUser/${this.state.userID}`)
-
+  }
   //function below to get all movies from collection using test route
   getMovies = () => {
     fetch(baseURL + '/test')
@@ -88,6 +70,28 @@ class App extends Component {
     })
   }
 
+  //function below passed to sessions
+  handleSubmit = (event) => {
+    event.preventDefault();
+    fetch(baseURL + 'sessions', {
+      method: 'POST',
+      body:
+        JSON.stringify({
+          username: this.state.username,
+          password: this.state.password
+        }),
+      headers: { 'Content-Type': 'application/json'}
+    })
+      .then(res => res.json())
+      .then(jsonResponse => {
+        this.setState({
+          username: '',
+          password: ''
+        })
+        this.props.handleAddUser(jsonResponse)
+      })
+  }
+
   render(){
     return (
       <Router>
@@ -103,7 +107,13 @@ class App extends Component {
                 handleAddUser={this.handleAddUser}
                />)}
           />
-          <Route path='/signin' component={ SignIn } />
+          <Route
+            path='/signin'
+            render={(routeProps) =>
+              (<SignIn {...routeProps}
+                handleSubmit={this.handleSubmit}
+              />)}
+          />
           <Route path='/update' component={ Update } />
         </div>
       </Router>

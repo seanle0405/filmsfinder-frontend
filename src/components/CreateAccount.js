@@ -11,7 +11,7 @@ class CreateAccount extends Component {
   }
   handleSubmit = (event) => {
     event.preventDefault();
-    fetch(this.props.baseURL + '/users', {
+    fetch(this.props.baseURL + 'users', {
       method: 'POST',
       body:
         JSON.stringify({

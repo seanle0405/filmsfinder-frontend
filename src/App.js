@@ -76,10 +76,10 @@ class App extends Component {
   }
 
 
-  componentDidMount = () => {
-    this.getRecentReleases();
-    this.getUserData()
-  }
+  // componentDidMount = () => {
+  //   this.getRecentReleases();
+  //   this.getUserData()
+  // }
 
   //function above to get all movies from collection using test route
 

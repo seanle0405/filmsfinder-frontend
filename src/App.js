@@ -1,10 +1,10 @@
-<<<<<<< HEAD
-import React from 'react';
+
+
 // import logo from './logo.svg';
-=======
+
 import React, { Component } from 'react';
 import logo from './logo.svg';
->>>>>>> 1866d1d727a0f200d6286eec7aa12346cb260d77
+// >>>>>>> 1866d1d727a0f200d6286eec7aa12346cb260d77
 import './App.css';
 import Update from './components/update.js'
 

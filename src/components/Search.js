@@ -1,14 +1,42 @@
 import React, { Component } from 'react'
 import Header from './Header.js'
 
+let showtimesAPIKey = `?apikey=dHNYEAlSVxOXC4Eqy6b8aufIXC7utYnu`
+
 class Search extends Component {
+  state = {
+    search: ''
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.id] : event.target.value
+    })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    const movieQuery = this.state.search
+    fetch(`https://api.internationalshowtimes.com/v4/movies?apikey=dHNYEAlSVxOXC4Eqy6b8aufIXC7utYnu&search_field=original_title&include_outdated=true&all_fields=true`+`&search_query=` + movieQuery)
+    .then(data => data.json())
+    .then(parsedData => console.log(parsedData))
+  }
+
+
   render() {
     return (
       <div>
         <Header />
-        <form>
-          <label>
-            <input type='text' name='search' placeholder='Search Films' />
+        <form
+          onSubmit={this.handleSubmit}
+          >
+          <label >
+            <input
+            onChange={this.handleChange}
+            id='search'
+            type='text'
+            placeholder='Search Films'
+            />
           </label>
           <input type='submit' value='Search' />
         </form>

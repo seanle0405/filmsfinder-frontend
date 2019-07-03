@@ -6,11 +6,8 @@ let showtimesAPIKey = `?apikey=dHNYEAlSVxOXC4Eqy6b8aufIXC7utYnu`
 class Search extends Component {
   state = {
 
-
     title :'' ,
-
     search: ''
-
 
   }
 
@@ -18,10 +15,10 @@ class Search extends Component {
     this.setState({
       [event.target.id] : event.target.value
 
-      
+
+ 
     })
   }
-
 
 
 
@@ -30,38 +27,60 @@ class Search extends Component {
     const movieQuery = this.state.search
     fetch(`https://api.internationalshowtimes.com/v4/movies?apikey=dHNYEAlSVxOXC4Eqy6b8aufIXC7utYnu&search_field=original_title&include_outdated=true&all_fields=true`+`&search_query=` + movieQuery)
     .then(data => data.json())
-    .then(parsedData => console.log(parsedData))
+    .then(parsedData => {
+      parsedData.meta_info.total_count ?
+      this.setState({
+        search: '',
+        results: parsedData
+      }) :
+      this.setState({
+        search: '',
+        noresults: true
+      })
+    })
   }
-
 
 
   render() {
     return (
+     <>
       <div>
         <Header />
 
-        
-         
-
         <form
           onSubmit={this.handleSubmit}
-          >   
-         
-           
-        
-            <input 
-            type = 'text'
-            id = 'title'
-            value = {this.state.title}
-            onChange = {this.handleChange}
-            placeholder='Search Films' />
+          >
+          <label >
+            <input
+            onChange={this.handleChange}
+            id='search'
+            type='text'
+            placeholder='Search Films'
+            value={this.state.search}
+            />
           <input type='submit' value='Search' />
+          </label>
+          
 
         </form>
 
-        {/* RETURNED RESULTS GO HERE */}
+
+      {
+        this.state.results ?
+        <img src={this.state.results.movies[1].poster_image.image_files[this.state.results.movies[1].poster_image.image_files.length-1].url} height='400px'></img>
+        :
+        null
+      }
+      {
+        this.state.noresults ?
+        <h1>sorry no results for that</h1>
+       :
+      null
+    }
+
 
       </div>
+    </>
     )
   }
 }

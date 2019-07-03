@@ -6,7 +6,6 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import logo from './logo.svg';
 
-
 import './App.css';
 import Header from './components/Header.js'
 import Search from './components/Search.js'
@@ -82,10 +81,10 @@ class App extends Component {
   }
 
 
-  componentDidMount = () => {
-    this.getRecentReleases();
-    this.getUserData()
-  }
+  // componentDidMount = () => {
+  //   this.getRecentReleases();
+  //   this.getUserData()
+  // }
 
   //function above to get all movies from collection using test route
 

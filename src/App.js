@@ -1,6 +1,17 @@
+<<<<<<< HEAD
+
+
+// import logo from './logo.svg';
+
+=======
+>>>>>>> 1b4196a355a217978fc6ecb531551cae2adaa2e5
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import logo from './logo.svg';
+<<<<<<< HEAD
+// >>>>>>> 1866d1d727a0f200d6286eec7aa12346cb260d77
+=======
+>>>>>>> 1b4196a355a217978fc6ecb531551cae2adaa2e5
 import './App.css';
 import Header from './components/Header.js'
 import Search from './components/Search.js'

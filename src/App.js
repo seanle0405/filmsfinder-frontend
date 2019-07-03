@@ -42,8 +42,7 @@ class App extends Component {
   state = {
     userID: 'testUserName',
     userDiary: '',
-    splash: '',
-
+    splash: ''
   }
 
 /// function to get all movies from collection using test route

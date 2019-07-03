@@ -40,8 +40,7 @@ let baseURL = `http://localhost:3003/filmfinder/`
 
 class App extends Component {
   state = {
-    users: []
-  }
+    users: [],
     userID: 'testUserName',
     userDiary: '',
     splash: '',

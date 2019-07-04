@@ -7,15 +7,21 @@ let baseURL = `http://localhost:3003/`
 
 class Search extends Component {
   state = {
+
     title :'' ,
     search: ''
+
   }
 
   handleChange = (event) => {
     this.setState({
       [event.target.id] : event.target.value
+
+
+ 
     })
   }
+
 
 
   handleSubmit = (event) => {
@@ -41,11 +47,13 @@ class Search extends Component {
       })
   }
 
+
   render() {
     return (
-      <>
+     <>
       <div>
         <Header />
+
         <form
           onSubmit={this.handleSubmit}
           >
@@ -58,7 +66,8 @@ class Search extends Component {
             value={this.state.search}
             />
           </label>
-          <input type='submit' value='Search' />
+          
+
         </form>
 
 

@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import logo from './logo.svg';
+
 import './App.css';
 import Header from './components/Header.js'
 import Search from './components/Search.js'
@@ -13,8 +14,8 @@ import FilmDetail from './components/FilmDetail.js'
 import CreateAccount from './components/CreateAccount.js'
 import SignIn from './components/SignIn.js'
 import Update from './components/update.js'
-
-
+import Splash from './components/splash.js'
+import Materialized from './materialize/css/materialize.css'
 
 
 
@@ -80,10 +81,10 @@ class App extends Component {
   }
 
 
-  // componentDidMount = () => {
-  //   this.getRecentReleases();
-  //   this.getUserData()
-  // }
+  componentDidMount = () => {
+    this.getRecentReleases();
+    // this.getUserData()
+  }
 
   //function above to get all movies from collection using test route
 
@@ -112,6 +113,9 @@ class App extends Component {
           />
           <Route path='/signin' component={ SignIn } />
           <Route path='/update' component={ Update } />
+
+          <Route path='/' component = {Splash} />
+
         </div>
       </Router>
     );

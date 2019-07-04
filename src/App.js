@@ -80,8 +80,19 @@ class App extends Component {
     }))
   }
 
+  getUserDiary = () => {
+    console.log('get user diary running');
+    console.log(baseURL , this.state.userID);
+    fetch(baseURL + 'getUser/' + this.state.userID)
+    .then(res => res.json(),
+      err=> console.log(err))
+    .then(resJson => this.setState({
+      userDiary: resJson[0].movies
+    }),
+      err=> console.log(err))
+  }
+
   addToDiary = (movie) => {
-    console.log('in addToDiary func on front end');
     fetch(baseURL + `addMovie`, {
       method: 'POST',
       body: JSON.stringify({
@@ -105,7 +116,7 @@ class App extends Component {
 
   componentDidMount = () => {
     this.getRecentReleases();
-    // this.getUserData()
+    this.getUserDiary()
   }
 
   //function above to get all movies from collection using test route
@@ -126,7 +137,16 @@ class App extends Component {
             />)}
           />
 
-          <Route path='/myfilms' component={ MyFilms } />
+          <Route
+            path='/myfilms'
+            render={(routeProps) => (
+              <MyFilms
+                {...routeProps}
+                userDiary={this.state.userDiary}
+              />
+            )}
+          />
+
 
           <Route path='/filmdetail' component={ FilmDetail } />
 

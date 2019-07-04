@@ -11,7 +11,7 @@ class SignIn extends Component {
   }
   handleSubmitLogIn = (event) => {
     event.preventDefault();
-    fetch(baseURL + 'sessions', {
+    fetch(this.props.baseURL + 'sessions', {
       method: 'POST',
       body:
         JSON.stringify({

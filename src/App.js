@@ -95,7 +95,7 @@ class App extends Component {
             path='/signin'
             render={(routeProps) =>
               (<SignIn {...routeProps}
-                handleSubmitLogIn={this.handleSubmitLogIn}
+                baseURL={baseURL}
               />)}
           />
           <Route path='/update' component={ Update } />

@@ -22,11 +22,11 @@ class CreateAccount extends Component {
     })
       .then(res => res.json())
       .then(jsonResponse => {
+        localStorage.setItem('user', 'foundUser')
         this.setState({
           username: '',
           password: ''
         })
-        this.props.handleAddUser(jsonResponse)
       })
   }
   render() {

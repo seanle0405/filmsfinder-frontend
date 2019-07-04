@@ -30,7 +30,6 @@ let baseURL = `http://localhost:3003/filmfinder/`
 
 class App extends Component {
   state = {
-    users: [],
     userID: 'testUserName',
     userDiary: '',
     splash: ''
@@ -82,8 +81,8 @@ class App extends Component {
     })
   }
 
-  //function below passed to sessions
-  handleSubmit = (event) => {
+  //function below passed to SignIn Component
+  handleSubmitLogIn = (event) => {
     event.preventDefault();
     fetch(baseURL + 'sessions', {
       method: 'POST',
@@ -123,7 +122,7 @@ class App extends Component {
             path='/signin'
             render={(routeProps) =>
               (<SignIn {...routeProps}
-                handleSubmit={this.handleSubmit}
+                handleSubmitLogIn={this.handleSubmit}
               />)}
           />
           <Route path='/update' component={ Update } />

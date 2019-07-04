@@ -9,12 +9,29 @@ class SignIn extends Component {
   handleChange = (event) => {
     this.setState({[event.target.id]: event.target.value})
   }
+  handleSubmitLogIn = (event) => {
+    event.preventDefault();
+    fetch(baseURL + 'sessions', {
+      method: 'POST',
+      body:
+        JSON.stringify({
+          username: this.state.username,
+          password: this.state.password
+        }),
+      headers: { 'Content-Type': 'application/json'}
+    })
+      .then(response => {
+        return response.json()
+      })
+      .then(json => console.log(json),
+        error => console.log(error))
+    }
   render() {
     return (
       <div>
         <Header />
         <h2>Sign In</h2>
-        <form onSubmit={this.props.handleSubmitLogIn}>
+        <form onSubmit={this.handleSubmitLogIn}>
           <label>
             <input
               type='text'

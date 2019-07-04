@@ -74,24 +74,6 @@ class App extends Component {
   //function above to get all movies from collection using test route
 
 
-  //function below passed to SignIn Component
-  handleSubmitLogIn = (event) => {
-    event.preventDefault();
-    fetch(baseURL + 'sessions', {
-      method: 'POST',
-      body:
-        JSON.stringify({
-          username: this.state.username,
-          password: this.state.password
-        }),
-      headers: { 'Content-Type': 'application/json'}
-    })
-      .then(response => {
-        return response.json()
-      })
-      .then(json => console.log(json),
-        error => console.log(error))
-    }
 
 
   render(){

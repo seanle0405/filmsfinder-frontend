@@ -27,6 +27,9 @@ class CreateAccount extends Component {
           password: ''
         })
       })
+      console.log(this.state.username);
+      this.props.setUser(this.state.username)
+
   }
   render() {
     return (

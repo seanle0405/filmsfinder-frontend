@@ -45,9 +45,17 @@ let baseURL = `http://localhost:3003/filmfinder/`
 
 class App extends Component {
   state = {
-    userID: 'testUserName',
+    userID: '',
     userDiary: '',
     splash: ''
+  }
+
+  setUser = (user) => {
+    console.log('in set user function');
+    console.log(user);
+    this.setState({
+      userID: user
+    })
   }
 
 /// function to get all movies from collection using test route
@@ -176,6 +184,7 @@ class App extends Component {
                 {...routeProps}
                 baseURL={baseURL}
                 handleAddUser={this.handleAddUser}
+                setUser={this.setUser}
                />)}
           />
 

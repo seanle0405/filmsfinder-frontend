@@ -6,6 +6,10 @@ class Splash extends Component {
 		return (
          
 			<h1> Recent Releases</h1>
+
+			<div>
+			
+			</div>
 		)
 
 	}

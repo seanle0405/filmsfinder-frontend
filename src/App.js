@@ -153,9 +153,12 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+
+          <Route exact path='/' component = {Splash} />
+
           <Route
             exact
-            path='/'
+            path='/search'
             render={(routeProps) => (
               <Search
                 {...routeProps}
@@ -192,7 +195,6 @@ class App extends Component {
 
           <Route path='/update' component={ Update } />
 
-          <Route path='/' component = {Splash} />
 
         </div>
       </Router>

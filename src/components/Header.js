@@ -12,6 +12,8 @@ class Header extends Component {
           <nav>
             <Link to='/'>{ 'Home' }</Link>
             {'  '}
+            <Link to='/search'>{ 'Search' }</Link>
+            {'  '}
             <Link to='/myfilms'>{ 'My Films' }</Link>
             {'  '}
             {/*if logged out, .inks for signup an create account will render*/}

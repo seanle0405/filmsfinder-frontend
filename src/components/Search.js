@@ -18,7 +18,7 @@ class Search extends Component {
       [event.target.id] : event.target.value
 
 
- 
+
     })
   }
 
@@ -66,7 +66,7 @@ class Search extends Component {
             value={this.state.search}
             />
           </label>
-          
+
 
         </form>
 

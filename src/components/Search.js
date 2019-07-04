@@ -3,6 +3,8 @@ import Header from './Header.js'
 
 let showtimesAPIKey = `?apikey=dHNYEAlSVxOXC4Eqy6b8aufIXC7utYnu`
 
+let baseURL = `http://localhost:3003/`
+
 class Search extends Component {
   state = {
 
@@ -16,7 +18,7 @@ class Search extends Component {
       [event.target.id] : event.target.value
 
 
- 
+
     })
   }
 
@@ -25,19 +27,24 @@ class Search extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const movieQuery = this.state.search
-    fetch(`https://api.internationalshowtimes.com/v4/movies?apikey=dHNYEAlSVxOXC4Eqy6b8aufIXC7utYnu&search_field=original_title&include_outdated=true&all_fields=true`+`&search_query=` + movieQuery)
+    fetch(baseURL+ `filmfinder/search/` + movieQuery)
     .then(data => data.json())
     .then(parsedData => {
-      parsedData.meta_info.total_count ?
-      this.setState({
-        search: '',
-        results: parsedData
-      }) :
-      this.setState({
-        search: '',
-        noresults: true
+      console.log(parsedData);
+      if (parsedData.length) {
+          this.setState({
+            search: '',
+            results: parsedData,
+            noresults: null
+          })
+        } else {
+          this.setState({
+            search: '',
+            noresults: true,
+            results: null
+          })
+        }
       })
-    })
   }
 
 
@@ -58,16 +65,19 @@ class Search extends Component {
             placeholder='Search Films'
             value={this.state.search}
             />
-          <input type='submit' value='Search' />
           </label>
-          
+
 
         </form>
 
 
       {
         this.state.results ?
-        <img src={this.state.results.movies[1].poster_image.image_files[this.state.results.movies[1].poster_image.image_files.length-1].url} height='400px'></img>
+
+        // this.state.results.map(movies => (
+          <img src={this.state.results[0].poster} height='400px'></img>
+        // ))s
+
         :
         null
       }

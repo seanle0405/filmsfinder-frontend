@@ -14,7 +14,7 @@ class SignIn extends Component {
       <div>
         <Header />
         <h2>Sign In</h2>
-        <form onSubmit={this.props.handleSubmit}>
+        <form onSubmit={this.props.handleSubmitLogIn}>
           <label>
             <input
               type='text'

@@ -86,15 +86,13 @@ class App extends Component {
         }),
       headers: { 'Content-Type': 'application/json'}
     })
-      .then(res => res.json())
-      .then(jsonResponse => {
-        this.setState({
-          username: '',
-          password: ''
-        })
-        this.props.handleAddUser(jsonResponse)
+      .then(response => {
+        return response.json()
       })
-  }
+      .then(json => console.log(json),
+        error => console.log(error))
+    }
+
 
   render(){
     return (
@@ -115,7 +113,7 @@ class App extends Component {
             path='/signin'
             render={(routeProps) =>
               (<SignIn {...routeProps}
-                handleSubmitLogIn={this.handleSubmit}
+                handleSubmitLogIn={this.handleSubmitLogIn}
               />)}
           />
           <Route path='/update' component={ Update } />

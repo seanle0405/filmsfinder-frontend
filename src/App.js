@@ -80,8 +80,17 @@ class App extends Component {
     }))
   }
 
+  getUserDiary = () => {
+    fetch(baseURL + 'getUser/' + this.state.userID)
+    .then(res => res.json(),
+      err=> console.log(err))
+    .then(resJson => this.setState({
+      userDiary: resJson[0].movies
+    }),
+      err=> console.log(err))
+  }
+
   addToDiary = (movie) => {
-    console.log('in addToDiary func on front end');
     fetch(baseURL + `addMovie`, {
       method: 'POST',
       body: JSON.stringify({
@@ -95,17 +104,37 @@ class App extends Component {
     })
     .then(res => res.json())
     .then(resJson => {
-      console.log(resJson);
       this.setState({
-        userDiary: resJson
+        userDiary: resJson.movies
       })
     })
+  }
+
+  deleteMovie = (movie) => {
+    fetch(baseURL, {
+      method: 'DELETE',
+      body: JSON.stringify({
+        username: this.state.userID,
+        movie
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json(),
+      err => console.log(err))
+    .then(resJson => this.setState({
+      userDiary: resJson.movies
+    }))
+
   }
 
 
   componentDidMount = () => {
     this.getRecentReleases();
-    // this.getUserData()
+    if (this.state.userID.length) {
+      this.getUserDiary()
+    }
   }
 
   //function above to get all movies from collection using test route
@@ -126,7 +155,17 @@ class App extends Component {
             />)}
           />
 
-          <Route path='/myfilms' component={ MyFilms } />
+          <Route
+            path='/myfilms'
+            render={(routeProps) => (
+              <MyFilms
+                {...routeProps}
+                userDiary={this.state.userDiary}
+                deleteMovie={this.deleteMovie}
+              />
+            )}
+          />
+
 
           <Route path='/filmdetail' component={ FilmDetail } />
 

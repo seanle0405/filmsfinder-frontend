@@ -7,17 +7,13 @@ let baseURL = `http://localhost:3003/`
 
 class Search extends Component {
   state = {
-
     title :'' ,
     search: ''
-
   }
 
   handleChange = (event) => {
     this.setState({
       [event.target.id] : event.target.value
-
-
 
     })
   }

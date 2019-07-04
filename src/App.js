@@ -1,3 +1,7 @@
+
+
+// import logo from './logo.svg';
+
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import logo from './logo.svg';
@@ -10,7 +14,6 @@ import CreateAccount from './components/CreateAccount.js'
 import SignIn from './components/SignIn.js'
 import Update from './components/update.js'
 
-let baseURL = `http://localhost:3003/filmfinder/`
 let cityId = 3945
 let releaseDate = '06-01-19'
 let showtimesBaseURL = `https://api.internationalshowtimes.com/v4/`
@@ -23,6 +26,8 @@ let fieldsParam = `&all_fields=true`
 let cityParam = `&city_ids=` + cityId
 let getRecentReleasesURL = showtimesBaseURL+moviesParam+showtimesAPIKey+releaseDateParam+countryParam+fieldsParam+cityParam
 
+let baseURL = `http://localhost:3003/filmfinder/`
+
 class App extends Component {
   state = {
     users: [],
@@ -34,7 +39,13 @@ class App extends Component {
 /// function to get all movies from collection using test route
   getUserData = (userID) => {
     fetch(baseURL + `getUser/${this.state.userID}`)
+    .then(data => data.json(),
+    err => console.log(err))
+    .then(parsedData => this.setState({userDiary: parsedData}, () => {
+      console.log(this.state.userDiary);
+    }))
   }
+
   //function below to get all movies from collection using test route
   getMovies = () => {
     fetch(baseURL + '/test')
@@ -56,10 +67,11 @@ class App extends Component {
   }
 
 
-  componentDidMount() {
-    this.getRecentReleases()
-    this.getUserData()
-  }
+  // componentDidMount = () => {
+  //   this.getRecentReleases();
+  //   this.getUserData()
+  // }
+
   //function above to get all movies from collection using test route
 
   handleAddUser = (user) => {

@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
+import Cookies from 'universal-cookie'
 import Header from './Header.js'
+
+const cookies = new Cookies()
 
 class SignIn extends Component {
   state = {

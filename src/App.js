@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import Cookies from 'universal-cookie'
 import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header.js'
@@ -13,6 +14,8 @@ import FilmDetail from './components/FilmDetail.js'
 import CreateAccount from './components/CreateAccount.js'
 import SignIn from './components/SignIn.js'
 import Update from './components/update.js'
+
+const cookies = new Cookies()
 
 let cityId = 3945
 let releaseDate = '06-01-19'

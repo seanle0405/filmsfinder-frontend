@@ -88,13 +88,7 @@ class App extends Component {
 
   //function above to get all movies from collection using test route
 
-  handleAddUser = (user) => {
-    const copyUsers = [...this.state.users]
-    copyUsers.push(user)
-    this.setState({
-      users: copyUsers
-    })
-  }
+
 
   render(){
     return (

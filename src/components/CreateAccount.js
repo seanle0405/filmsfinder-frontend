@@ -26,7 +26,6 @@ class CreateAccount extends Component {
           username: '',
           password: ''
         })
-        this.props.handleAddUser(jsonResponse)
       })
   }
   render() {

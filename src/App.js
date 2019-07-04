@@ -80,6 +80,28 @@ class App extends Component {
     }))
   }
 
+  addToDiary = (movie) => {
+    console.log('in addToDiary func on front end');
+    fetch(baseURL + `addMovie`, {
+      method: 'POST',
+      body: JSON.stringify({
+        username: this.state.userID,
+        movie,
+        watched: false
+      }),
+      headers: {
+        'Content-Type' : 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(resJson => {
+      console.log(resJson);
+      this.setState({
+        userDiary: resJson
+      })
+    })
+  }
+
 
   componentDidMount = () => {
     this.getRecentReleases();
@@ -94,18 +116,32 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route exact path='/' component={ Search } />
+          <Route
+            exact
+            path='/'
+            render={(routeProps) => (
+              <Search
+                {...routeProps}
+                addToDiary={this.addToDiary}
+            />)}
+          />
+
           <Route path='/myfilms' component={ MyFilms } />
+
           <Route path='/filmdetail' component={ FilmDetail } />
+
           <Route
             path='/createaccount'
             render={(routeProps) =>
-              (<CreateAccount {...routeProps}
+              (<CreateAccount
+                {...routeProps}
                 baseURL={baseURL}
                 handleAddUser={this.handleAddUser}
                />)}
           />
+
           <Route path='/signin' component={ SignIn } />
+
           <Route path='/update' component={ Update } />
 
           <Route path='/' component = {Splash} />

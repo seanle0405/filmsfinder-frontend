@@ -81,8 +81,6 @@ class App extends Component {
   }
 
   getUserDiary = () => {
-    console.log('get user diary running');
-    console.log(baseURL , this.state.userID);
     fetch(baseURL + 'getUser/' + this.state.userID)
     .then(res => res.json(),
       err=> console.log(err))
@@ -106,17 +104,37 @@ class App extends Component {
     })
     .then(res => res.json())
     .then(resJson => {
-      console.log(resJson);
       this.setState({
-        userDiary: resJson
+        userDiary: resJson.movies
       })
     })
+  }
+
+  deleteMovie = (movie) => {
+    fetch(baseURL, {
+      method: 'DELETE',
+      body: JSON.stringify({
+        username: this.state.userID,
+        movie
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json(),
+      err => console.log(err))
+    .then(resJson => this.setState({
+      userDiary: resJson.movies
+    }))
+
   }
 
 
   componentDidMount = () => {
     this.getRecentReleases();
-    this.getUserDiary()
+    if (this.state.userID.length) {
+      this.getUserDiary()
+    }
   }
 
   //function above to get all movies from collection using test route
@@ -143,6 +161,7 @@ class App extends Component {
               <MyFilms
                 {...routeProps}
                 userDiary={this.state.userDiary}
+                deleteMovie={this.deleteMovie}
               />
             )}
           />

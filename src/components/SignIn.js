@@ -35,7 +35,6 @@ class SignIn extends Component {
       })
   }
   handleAddCookie = (json) => {
-    console.log(json)
     cookies.set('user', json.foundUser, {path:'/'})
   }
   render() {

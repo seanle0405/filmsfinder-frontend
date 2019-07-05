@@ -23,8 +23,7 @@ class Search extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const movieQuery = this.state.search
-    // fetch(baseURL+ `filmfinder/search/` + movieQuery)
-    fetch(`http://localhost:3003/filmfinder/testsearch3`)
+    fetch(baseURL+ `filmfinder/search/` + movieQuery)
     .then(data => data.json())
     .then(parsedData => {
       console.log(parsedData);
@@ -62,7 +61,7 @@ class Search extends Component {
             value={this.state.search}
             />
           </label>
-          
+
           <input type = "submit" value = "search"/>
         </form>
 
@@ -72,86 +71,31 @@ class Search extends Component {
         this.state.results ?
 
         this.state.results.map((movie) => (
-      <>
+        <>
           <div
-            className='searchresult'>
+              className='searchresult'>
 
-          <h3>{movie.title}</h3>
-          <img
-            src={movie.poster.length? movie.poster: "http://media1.myfolio.com/users/getrnd/images/mkay4a6gy1.jpg"}
-            height='400px'
-            // key={movies.imdb}
-          />
-          <button
-            onClick={() => {
-              this.props.addToDiary(movie, true)
-            }}
-            >Mark as Watched
-          </button>
+            <h3>{movie.title}</h3>
+            <img
+              src={movie.poster.length? movie.poster: "http://media1.myfolio.com/users/getrnd/images/mkay4a6gy1.jpg"}
+              height='400px'
+              // key={movies.imdb}
+            />
+            <button
+              onClick={() => {
+                this.props.addToDiary(movie, true)
+              }}
+              >Mark as Watched
+            </button>
 
-          <button
-            onClick={() => {
-              this.props.addToDiary(movie, false)
-            }}
-            >Add to Watchlist</button>
+            <button
+              onClick={() => {
+                this.props.addToDiary(movie, false)
+              }}
+              >Add to Watchlist</button>
 
-        </div>
-
-
-
-
-        <div
-          className='searchresult'>
-
-          <h3>{movie.title}</h3>
-          <img
-            src={movie.poster.length? movie.poster: "http://media1.myfolio.com/users/getrnd/images/mkay4a6gy1.jpg"}
-            height='400px'
-            // key={movies.imdb}
-          />
-          <button
-            onClick={() => {
-              this.props.addToDiary(movie, true)
-            }}
-            >Mark as Watched
-          </button>
-
-          <button
-            onClick={() => {
-              this.props.addToDiary(movie, false)
-            }}
-            >Add to Watchlist</button>
-
-      </div>
-
-
-
-
-      <div
-        className='searchresult'>
-          <h3>{movie.title}</h3>
-          <img
-            src={movie.poster.length? movie.poster: "http://media1.myfolio.com/users/getrnd/images/mkay4a6gy1.jpg"}
-            height='400px'
-            // key={movies.imdb}
-          />
-          <button
-            onClick={() => {
-              this.props.addToDiary(movie, true)
-            }}
-            >Mark as Watched
-          </button>
-
-          <button
-            onClick={() => {
-              this.props.addToDiary(movie, false)
-            }}
-            >Add to Watchlist</button>
-
-    </div>
-
-
-</>
+          </div>
+        </>
 
         ))
 

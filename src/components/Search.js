@@ -71,7 +71,7 @@ class Search extends Component {
           <input type = "submit" value = "search"/>
         </form>
 
-    <div className='searchResultsContainer'>
+    <div className='movieContainer'>
 
       {
         this.state.results ?
@@ -79,18 +79,28 @@ class Search extends Component {
         this.state.results.map((movie) => (
         <>
           <div
-              className='searchresult'>
+              className='movie'>
 
             <h3>{movie.title}</h3>
-            <img
-              src={movie.poster.length? movie.poster: "http://media1.myfolio.com/users/getrnd/images/mkay4a6gy1.jpg"}
-              height='400px'
-              // key={movies.imdb}
-            />
+            <Link
+              key={movie.imdb_id}
+              onClick={() => this.props.getMovie(movie)}
+              to='/filmdetail'>{
+                <img
+                  src={movie.poster.length? movie.poster: "http://media1.myfolio.com/users/getrnd/images/mkay4a6gy1.jpg"}
+                  height='400px'
+                />
+              }
+            </Link>
+
+                {/*key={movies.imdb}*/}
+
             {
             !this.props.currentUser ?
             <>
-              <Link to='/SignIn'> {
+              <Link
+                key={movie.imdb_id}
+                to='/SignIn'> {
               <button
                 onClick={() => {
                   this.props.addToDiary(movie, true)

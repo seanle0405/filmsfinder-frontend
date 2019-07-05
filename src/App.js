@@ -153,6 +153,7 @@ class App extends Component {
     this.setState({movie: movie})
   }
 
+
   render(){
     return (
       <>
@@ -185,6 +186,8 @@ class App extends Component {
                 {...routeProps}
                 addToDiary={this.addToDiary}
                 currentUser={this.state.userID}
+                movie={this.state.movie}
+                getMovie={this.getMovie}
             />)}
           />
 

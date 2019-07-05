@@ -34,11 +34,21 @@ class SignIn extends Component {
         return response.json()
       })
       .then(json => {
-        this.handleAddCookie(json)
-        this.setState({
-          username: '',
-          password: ''
-        })
+        if (json.foundUser) {
+          this.handleAddCookie(json)
+          this.setState({
+            username: '',
+            password: '',
+            credentialError: false
+          })
+        } else {
+          console.log('password didnt match');
+          this.setState({
+            credentialError: true,
+            username: '',
+            password: ''
+          })
+        }
       })
   }
 
@@ -80,6 +90,11 @@ class SignIn extends Component {
             value='Sign In'
           />
         </form>
+        {
+          this.state.credentialError ?
+          <h1> try again!</h1>:
+          null
+        }
       </div>
     )
   }

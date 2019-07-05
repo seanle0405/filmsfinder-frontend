@@ -35,14 +35,15 @@ class SignIn extends Component {
       })
   }
   handleAddCookie = (json) => {
+    console.log(json);
     cookies.set('user', json.foundUser, {path:'/'})
+    this.props.refreshCurrentUser()
   }
 
-  
+
   render() {
     return (
       <div>
-        <Header />
         <h2>Sign In</h2>
         <form onSubmit={this.handleSubmitLogIn}>
           <label>

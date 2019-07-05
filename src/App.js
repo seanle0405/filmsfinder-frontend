@@ -26,7 +26,7 @@ import Materialized from './materialize/css/materialize.css'
 
 const cookies = new Cookies()
 
-let myUser = cookies.get('user')
+let currentUser = cookies.get('user')
 
 let cityId = 3945
 let releaseDate = '06-01-19'
@@ -44,41 +44,16 @@ let baseURL = `http://localhost:3003/filmfinder/`
 
 class App extends Component {
   state = {
-    userID: '',
+    userID: currentUser,
     userDiary: '',
     splash: ''
   }
 
-  getUser = () => {
-    console.log(myUser);
-  }
-
-  setUser = (user) => {
-    console.log('in set user function');
-    console.log(user);
+  refreshCurrentUser = () => {
+    currentUser = cookies.get('user')
     this.setState({
-      userID: user
+      userID: currentUser
     })
-  }
-
-/// function to get all movies from collection using test route
-  getUserData = (userID) => {
-    fetch(baseURL + `getUser/${this.state.userID}`)
-    .then(data => data.json(),
-    err => console.log(err))
-    .then(parsedData => this.setState({userDiary: parsedData}, () => {
-      console.log(this.state.userDiary);
-    }))
-  }
-
-  //function below to get all movies from collection using test route
-  getMovies = () => {
-    fetch(baseURL + '/test')
-    .then(data => data.json(),
-    err => console.log(err))
-    .then(parsedData => this.setState({userDiary: parsedData}, () => {
-      console.log(this.state.userDiary);
-    }))
   }
 
 
@@ -91,8 +66,8 @@ class App extends Component {
     }))
   }
 
-  getUserDiary = () => {
-    fetch(baseURL + 'getUser/' + this.state.userID)
+  getUserDiary = (user) => {
+    fetch(baseURL + 'getUser/' + user)
     .then(res => res.json(),
       err=> console.log(err))
     .then(resJson => this.setState({
@@ -102,30 +77,37 @@ class App extends Component {
   }
 
   addToDiary = (movie) => {
-    fetch(baseURL + `addMovie`, {
-      method: 'POST',
-      body: JSON.stringify({
-        username: this.state.userID,
-        movie,
-        watched: false
-      }),
-      headers: {
-        'Content-Type' : 'application/json'
-      }
-    })
-    .then(res => res.json())
-    .then(resJson => {
-      this.setState({
-        userDiary: resJson.movies
+    this.refreshCurrentUser()
+    if (currentUser) {
+      fetch(baseURL + `addMovie`, {
+        method: 'POST',
+        body: JSON.stringify({
+          username: currentUser,
+          movie,
+          watched: false
+        }),
+        headers: {
+          'Content-Type' : 'application/json'
+        }
       })
-    })
+      .then(res => res.json())
+      .then(resJson => {
+        this.setState({
+          userDiary: resJson.movies
+        })
+      })
+    } else {
+      console.log('no currentuser');
+    }
+
   }
 
   deleteMovie = (movie) => {
+    this.refreshCurrentUser()
     fetch(baseURL, {
       method: 'DELETE',
       body: JSON.stringify({
-        username: this.state.userID,
+        username: currentUser,
         movie
       }),
       headers: {
@@ -143,8 +125,10 @@ class App extends Component {
 
   componentDidMount = () => {
     this.getRecentReleases();
-    if (this.state.userID.length) {
-      this.getUserDiary()
+    this.refreshCurrentUser();
+    if (currentUser) {
+      console.log(currentUser, 'about to getdiary');
+      this.getUserDiary(currentUser)
     }
   }
 
@@ -154,11 +138,17 @@ class App extends Component {
 
   render(){
     return (
+      <>
       <Router>
         <div className="App">
           <h2
-            onClick={this.getUser}
-            >click to get user in console</h2>
+            > Hi {currentUser}</h2>
+
+          <Header
+            refreshCurrentUser={this.refreshCurrentUser}/>
+
+
+
 
           <Route exact path='/' component = {Splash} />
 
@@ -193,7 +183,7 @@ class App extends Component {
                 {...routeProps}
                 baseURL={baseURL}
                 handleAddUser={this.handleAddUser}
-                setUser={this.setUser}
+                refreshCurrentUser={this.refreshCurrentUser}
                />)}
           />
           <Route
@@ -201,6 +191,7 @@ class App extends Component {
             render={(routeProps) =>
               (<SignIn {...routeProps}
                 baseURL={baseURL}
+                refreshCurrentUser={this.refreshCurrentUser}
               />)}
           />
           <Route path='/update' component={ Update } />
@@ -208,6 +199,7 @@ class App extends Component {
 
         </div>
       </Router>
+    </>
     );
   }
 }

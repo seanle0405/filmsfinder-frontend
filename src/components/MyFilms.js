@@ -25,7 +25,6 @@ class MyFilms extends Component {
   render() {
     return (
       <div>
-        <Header />
           <h2>My Films</h2>
         {
           console.log(this.props.userDiary)

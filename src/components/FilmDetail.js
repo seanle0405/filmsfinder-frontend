@@ -5,7 +5,6 @@ class FilmDetail extends Component {
   render() {
     return (
       <div>
-        <Header />
         <h2>Film Title</h2>
         <h3>Film Details, etc.</h3>
       </div>

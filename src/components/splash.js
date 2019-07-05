@@ -5,9 +5,11 @@ class Splash extends Component {
 
 	render() {
 		return (
-      <div>
+
+      		<div>
 				<h1> Recent Releases</h1>
 			</div>
+
 		)
 
 	}

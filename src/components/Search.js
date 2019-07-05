@@ -61,8 +61,8 @@ class Search extends Component {
             value={this.state.search}
             />
           </label>
-
-
+          
+          <input type = "submit" value = "search"/>
         </form>
 
 

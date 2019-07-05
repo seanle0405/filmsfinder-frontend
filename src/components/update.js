@@ -5,7 +5,9 @@ const baseURL = 'http://localhost:3003/'
 class Update extends Component {
 		state = {
 			name : ''
+
 		}
+
 
 	handleChange = (event) => {
 		this.setState({

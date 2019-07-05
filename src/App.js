@@ -79,15 +79,16 @@ class App extends Component {
       err=> console.log(err))
   }
 
-  addToDiary = (movie) => {
+  addToDiary = (movie, watched) => {
     this.refreshCurrentUser()
     if (currentUser) {
+      movie.watched = watched
+
       fetch(baseURL + `addMovie`, {
         method: 'POST',
         body: JSON.stringify({
           username: currentUser,
-          movie,
-          watched: false
+          movie
         }),
         headers: {
           'Content-Type' : 'application/json'

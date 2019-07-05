@@ -179,6 +179,8 @@ class App extends Component {
                 {...routeProps}
                 addToDiary={this.addToDiary}
                 currentUser={this.state.userID}
+                movie={this.state.movie}
+                getMovie={this.state.getMovie}
             />)}
           />
 
@@ -190,7 +192,7 @@ class App extends Component {
                 userDiary={this.state.userDiary}
                 deleteMovie={this.deleteMovie}
                 movie={this.state.movie}
-                getMovie={this.getMovie}
+                getMovie={this.state.getMovie}
               />
             )}
           />

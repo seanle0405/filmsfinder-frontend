@@ -82,11 +82,18 @@ class Search extends Component {
               className='searchresult'>
 
             <h3>{movie.title}</h3>
-            <img
-              src={movie.poster.length? movie.poster: "http://media1.myfolio.com/users/getrnd/images/mkay4a6gy1.jpg"}
-              height='400px'
-              // key={movies.imdb}
-            />
+            <Link
+              onClick={() => this.props.getMovie(movie)}
+              to='/filmdetail'>{
+                <img
+                  src={movie.poster.length? movie.poster: "http://media1.myfolio.com/users/getrnd/images/mkay4a6gy1.jpg"}
+                  height='400px'
+                />
+              }
+            </Link>
+
+                {/*key={movies.imdb}*/}
+
             {
             !this.props.currentUser ?
             <>

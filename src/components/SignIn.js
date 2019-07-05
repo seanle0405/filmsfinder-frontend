@@ -5,13 +5,16 @@ import Header from './Header.js'
 const cookies = new Cookies()
 
 class SignIn extends Component {
+
   state = {
     username: '',
     password: ''
   }
+
   handleChange = (event) => {
     this.setState({[event.target.id]: event.target.value})
   }
+
   handleSubmitLogIn = (event) => {
     event.preventDefault();
     fetch(this.props.baseURL + 'sessions', {
@@ -34,13 +37,18 @@ class SignIn extends Component {
         })
       })
   }
+
   handleAddCookie = (json) => {
+    console.log(json);
     cookies.set('user', json.foundUser, {path:'/'})
+    this.props.refreshCurrentUser()
+    this.props.getUserData(json.foundUser)
   }
+
+
   render() {
     return (
       <div>
-        <Header />
         <h2>Sign In</h2>
         <form onSubmit={this.handleSubmitLogIn}>
           <label>

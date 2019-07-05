@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
+import Cookies from 'universal-cookie'
 import Header from './Header.js'
+
+const cookies = new Cookies()
 
 class CreateAccount extends Component {
   state = {
@@ -21,20 +24,24 @@ class CreateAccount extends Component {
       headers: { 'Content-Type': 'application/json'}
     })
       .then(res => res.json())
-      .then(jsonResponse => {
+      .then(json => {
+        this.handleAddCookie(json)
         this.setState({
           username: '',
           password: ''
         })
       })
-      console.log(this.state.username);
-      this.props.setUser(this.state.username)
-
   }
+
+  handleAddCookie = (json) => {
+    console.log(json);
+    cookies.set('user', json.username, {path:'/'})
+    this.props.refreshCurrentUser()
+  }
+
   render() {
     return (
       <div>
-      <Header />
         <h2>Create Account</h2>
         <form onSubmit={this.handleSubmit}>
           <label>

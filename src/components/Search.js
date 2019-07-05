@@ -48,7 +48,6 @@ class Search extends Component {
     return (
      <>
       <div>
-        <Header />
 
         <form
           onSubmit={this.handleSubmit}

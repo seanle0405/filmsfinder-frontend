@@ -11,6 +11,7 @@ class Header extends Component {
 
   handleLogOut = () => {
     cookies.remove('user')
+    this.props.refreshCurrentUser()
   }
 
   render() {

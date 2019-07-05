@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Header from './Header.js'
+
 
 let baseURL = `http://localhost:3003/filmfinder/`
 

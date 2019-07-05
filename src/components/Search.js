@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Header from './Header.js'
+
 
 let showtimesAPIKey = `?apikey=dHNYEAlSVxOXC4Eqy6b8aufIXC7utYnu`
 

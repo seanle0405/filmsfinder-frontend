@@ -1,13 +1,12 @@
-
-
-// import logo from './logo.svg';
-
+////////////////////////////////////////////////////
+//importing React and packages
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Cookies from 'universal-cookie'
-import logo from './logo.svg';
 
-import './App.css';
+//importing components and style sheets
+import './App.css'
+import Materialized from './materialize/css/materialize.css'
 import Header from './components/Header.js'
 import Search from './components/Search.js'
 import MyFilms from './components/MyFilms.js'
@@ -16,19 +15,16 @@ import CreateAccount from './components/CreateAccount.js'
 import SignIn from './components/SignIn.js'
 import Update from './components/update.js'
 import Splash from './components/splash.js'
-import Materialized from './materialize/css/materialize.css'
 
-
-
-
-
-
+////////////////////////////////////////////////////
 
 
 const cookies = new Cookies()
 
 let currentUser = cookies.get('user')
 
+
+//// building Splash URL
 
 let cityId = 3945
 let releaseDate = '06-01-19'
@@ -41,6 +37,7 @@ let countryParam = `&countries=US`
 let fieldsParam = `&all_fields=true`
 let cityParam = `&city_ids=` + cityId
 let getRecentReleasesURL = showtimesBaseURL+moviesParam+showtimesAPIKey+releaseDateParam+countryParam+fieldsParam+cityParam
+////////////////////////////////////////////////////
 
 let baseURL = `http://localhost:3003/filmfinder/`
 
@@ -86,15 +83,16 @@ class App extends Component {
       err=> console.log(err))
   }
 
-  addToDiary = (movie) => {
+  addToDiary = (movie, watched) => {
     this.refreshCurrentUser()
     if (currentUser) {
+      movie.watched = watched
+
       fetch(baseURL + `addMovie`, {
         method: 'POST',
         body: JSON.stringify({
           username: currentUser,
-          movie,
-          watched: false
+          movie
         }),
         headers: {
           'Content-Type' : 'application/json'
@@ -154,11 +152,19 @@ class App extends Component {
       <>
       <Router>
         <div className="App">
-          <h2
-            > Hi {currentUser}</h2>
+          {
+            currentUser ?
+            <h2
+              >Welcome {currentUser}</h2>
+              :
+              null
+          }
+
 
           <Header
-            refreshCurrentUser={this.refreshCurrentUser}/>
+            refreshCurrentUser={this.refreshCurrentUser}
+            currentUser={currentUser}
+          />
 
 
 
@@ -172,6 +178,7 @@ class App extends Component {
               <Search
                 {...routeProps}
                 addToDiary={this.addToDiary}
+                currentUser={this.state.userID}
             />)}
           />
 
@@ -221,6 +228,8 @@ class App extends Component {
           />
 
           <Route path='/update' component={ Update } />
+
+
 
 
         </div>

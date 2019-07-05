@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Header from './Header.js'
+
 
 let showtimesAPIKey = `?apikey=dHNYEAlSVxOXC4Eqy6b8aufIXC7utYnu`
 
@@ -7,17 +7,13 @@ let baseURL = `http://localhost:3003/`
 
 class Search extends Component {
   state = {
-
     title :'' ,
     search: ''
-
   }
 
   handleChange = (event) => {
     this.setState({
       [event.target.id] : event.target.value
-
-
 
     })
   }
@@ -52,7 +48,6 @@ class Search extends Component {
     return (
      <>
       <div>
-        <Header />
 
         <form
           onSubmit={this.handleSubmit}
@@ -74,9 +69,20 @@ class Search extends Component {
       {
         this.state.results ?
 
-        // this.state.results.map(movies => (
-          <img src={this.state.results[0].poster} height='400px'></img>
-        // ))s
+        this.state.results.map(movie => (
+          <div>
+          <h3>{movie.title}</h3>
+          <img
+            src={movie.poster.length? movie.poster: "http://media1.myfolio.com/users/getrnd/images/mkay4a6gy1.jpg"}
+            height='400px'
+            // key={movies.imdb}
+            onClick={() => {
+              this.props.addToDiary(movie)
+            }}
+          />
+        </div>
+
+        ))
 
         :
         null

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Header from './Header.js'
 
 const baseURL = 'http://localhost:3003/'
 
@@ -44,7 +43,6 @@ class Update extends Component {
 	render(){
 		return(
 			<div>
-				<Header />
 				<form onSubmit = {this.handleSubmit}>
 				<input
 				type ="text"

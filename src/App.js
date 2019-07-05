@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 import logo from './logo.svg';
+
 import './App.css';
 import Header from './components/Header.js'
 import Search from './components/Search.js'
@@ -14,6 +15,8 @@ import FilmDetail from './components/FilmDetail.js'
 import CreateAccount from './components/CreateAccount.js'
 import SignIn from './components/SignIn.js'
 import Update from './components/update.js'
+import Splash from './components/splash.js'
+import Materialized from './materialize/css/materialize.css'
 
 const cookies = new Cookies()
 
@@ -33,9 +36,17 @@ let baseURL = `http://localhost:3003/filmfinder/`
 
 class App extends Component {
   state = {
-    userID: 'testUserName',
+    userID: '',
     userDiary: '',
     splash: ''
+  }
+
+  setUser = (user) => {
+    console.log('in set user function');
+    console.log(user);
+    this.setState({
+      userID: user
+    })
   }
 
 /// function to get all movies from collection using test route
@@ -68,14 +79,65 @@ class App extends Component {
     }))
   }
 
+  getUserDiary = () => {
+    fetch(baseURL + 'getUser/' + this.state.userID)
+    .then(res => res.json(),
+      err=> console.log(err))
+    .then(resJson => this.setState({
+      userDiary: resJson[0].movies
+    }),
+      err=> console.log(err))
+  }
 
-  // componentDidMount = () => {
-  //   this.getRecentReleases();
-  //   this.getUserData()
-  // }
+  addToDiary = (movie) => {
+    fetch(baseURL + `addMovie`, {
+      method: 'POST',
+      body: JSON.stringify({
+        username: this.state.userID,
+        movie,
+        watched: false
+      }),
+      headers: {
+        'Content-Type' : 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(resJson => {
+      this.setState({
+        userDiary: resJson.movies
+      })
+    })
+  }
+
+  deleteMovie = (movie) => {
+    fetch(baseURL, {
+      method: 'DELETE',
+      body: JSON.stringify({
+        username: this.state.userID,
+        movie
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json(),
+      err => console.log(err))
+    .then(resJson => this.setState({
+      userDiary: resJson.movies
+    }))
+
+  }
+
+
+  componentDidMount = () => {
+    this.getRecentReleases();
+    if (this.state.userID.length) {
+      this.getUserDiary()
+    }
+  }
+
 
   //function above to get all movies from collection using test route
-
 
 
 
@@ -83,17 +145,44 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route exact path='/' component={ Search } />
-          <Route path='/myfilms' component={ MyFilms } />
+
+          <Route exact path='/' component = {Splash} />
+
+          <Route
+            exact
+            path='/search'
+            render={(routeProps) => (
+              <Search
+                {...routeProps}
+                addToDiary={this.addToDiary}
+            />)}
+          />
+
+          <Route
+            path='/myfilms'
+            render={(routeProps) => (
+              <MyFilms
+                {...routeProps}
+                userDiary={this.state.userDiary}
+                deleteMovie={this.deleteMovie}
+              />
+            )}
+          />
+
+
           <Route path='/filmdetail' component={ FilmDetail } />
+
           <Route
             path='/createaccount'
             render={(routeProps) =>
-              (<CreateAccount {...routeProps}
+              (<CreateAccount
+                {...routeProps}
                 baseURL={baseURL}
                 handleAddUser={this.handleAddUser}
+                setUser={this.setUser}
                />)}
           />
+
           <Route
             path='/signin'
             render={(routeProps) =>
@@ -101,7 +190,10 @@ class App extends Component {
                 baseURL={baseURL}
               />)}
           />
+
           <Route path='/update' component={ Update } />
+
+
         </div>
       </Router>
     );

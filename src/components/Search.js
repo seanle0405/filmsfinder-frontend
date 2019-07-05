@@ -3,6 +3,8 @@ import Header from './Header.js'
 
 let showtimesAPIKey = `?apikey=dHNYEAlSVxOXC4Eqy6b8aufIXC7utYnu`
 
+let baseURL = `http://localhost:3003/`
+
 class Search extends Component {
   state = {
     title :'' ,
@@ -12,33 +14,42 @@ class Search extends Component {
   handleChange = (event) => {
     this.setState({
       [event.target.id] : event.target.value
+
     })
   }
+
 
 
   handleSubmit = (event) => {
     event.preventDefault()
     const movieQuery = this.state.search
-    fetch(`https://api.internationalshowtimes.com/v4/movies?apikey=dHNYEAlSVxOXC4Eqy6b8aufIXC7utYnu&search_field=original_title&include_outdated=true&all_fields=true`+`&search_query=` + movieQuery)
+    fetch(baseURL+ `filmfinder/search/` + movieQuery)
     .then(data => data.json())
     .then(parsedData => {
-      parsedData.meta_info.total_count ?
-      this.setState({
-        search: '',
-        results: parsedData
-      }) :
-      this.setState({
-        search: '',
-        noresults: true
+      console.log(parsedData);
+      if (parsedData.length) {
+          this.setState({
+            search: '',
+            results: parsedData,
+            noresults: null
+          })
+        } else {
+          this.setState({
+            search: '',
+            noresults: true,
+            results: null
+          })
+        }
       })
-    })
   }
+
 
   render() {
     return (
-      <>
+     <>
       <div>
         <Header />
+
         <form
           onSubmit={this.handleSubmit}
           >
@@ -50,15 +61,30 @@ class Search extends Component {
             placeholder='Search Films'
             value={this.state.search}
             />
-          <input type='submit' value='Search' />
           </label>
-          <input type='submit' value='Search' />
+
+
         </form>
 
 
       {
         this.state.results ?
-        <img src={this.state.results.movies[1].poster_image.image_files[this.state.results.movies[1].poster_image.image_files.length-1].url} height='400px'></img>
+
+        this.state.results.map(movie => (
+          <div>
+          <h3>{movie.title}</h3>
+          <img
+            src={movie.poster.length? movie.poster: "http://media1.myfolio.com/users/getrnd/images/mkay4a6gy1.jpg"}
+            height='400px'
+            // key={movies.imdb}
+            onClick={() => {
+              this.props.addToDiary(movie)
+            }}
+          />
+        </div>
+
+        ))
+
         :
         null
       }

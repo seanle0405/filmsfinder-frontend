@@ -192,6 +192,7 @@ class App extends Component {
               <FilmDetail
                 {...routeProps}
                 movie={this.state.movie}
+                getMovie={this.getMovie}
               />
             )}
           />

@@ -180,7 +180,7 @@ class App extends Component {
                 addToDiary={this.addToDiary}
                 currentUser={this.state.userID}
                 movie={this.state.movie}
-                getMovie={this.state.getMovie}
+                getMovie={this.getMovie}
             />)}
           />
 
@@ -192,7 +192,7 @@ class App extends Component {
                 userDiary={this.state.userDiary}
                 deleteMovie={this.deleteMovie}
                 movie={this.state.movie}
-                getMovie={this.state.getMovie}
+                getMovie={this.getMovie}
               />
             )}
           />

@@ -42,7 +42,6 @@ class Update extends Component {
 	render(){
 		return(
 			<div>
-				<Header />
 				<form onSubmit = {this.handleSubmit}>
 				<input
 				type ="text"

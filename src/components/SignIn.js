@@ -9,13 +9,16 @@ let myUser = cookies.get('user')
 
 
 class SignIn extends Component {
+
   state = {
     username: '',
     password: ''
   }
+
   handleChange = (event) => {
     this.setState({[event.target.id]: event.target.value})
   }
+
   handleSubmitLogIn = (event) => {
     event.preventDefault();
     fetch(this.props.baseURL + 'sessions', {
@@ -38,22 +41,19 @@ class SignIn extends Component {
         })
       })
   }
+
   handleAddCookie = (json) => {
 
     cookies.set('user', json.foundUser, {path:'/'})
+    this.props.refreshCurrentUser()
+    this.props.getUserData(json.foundUser)
   }
 
-  getUsername = () => {
-    console.log(myUser);
-  }
 
   render() {
     return (
       <div>
-        <Header />
-        <h2
-          onClick={this.getUsername}
-        >Sign In</h2>
+        <h2>Sign In</h2>
         <form onSubmit={this.handleSubmitLogIn}>
           <label>
             <input

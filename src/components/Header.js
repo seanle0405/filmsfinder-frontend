@@ -11,6 +11,7 @@ class Header extends Component {
 
   handleLogOut = () => {
     cookies.remove('user')
+    this.props.refreshCurrentUser()
   }
 
   render() {
@@ -19,6 +20,8 @@ class Header extends Component {
         <h1>Films Finder</h1>
           <nav>
             <Link to='/'>{ 'Home' }</Link>
+            {'  '}
+            <Link to='/search'>{ 'Search' }</Link>
             {'  '}
             <Link to='/myfilms'>{ 'My Films' }</Link>
             {'  '}

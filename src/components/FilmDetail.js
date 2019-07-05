@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Link } from 'react-router-dom'
 import Header from './Header.js'
 
 class FilmDetail extends Component {
   render() {
     return (
       <div>
+        <Link>
+
+        </Link>
         <h2>{this.props.movie.title}</h2>
         <img src={this.props.movie.poster} />
         <h4>Genre: {this.props.movie.genres}</h4>

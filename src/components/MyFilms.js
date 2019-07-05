@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Header from './Header.js'
 
 let baseURL = `http://localhost:3003/filmfinder/`
@@ -33,10 +34,16 @@ class MyFilms extends Component {
           this.props.userDiary.length ?
             this.props.userDiary.map((movie) => (
               <>
-                <img
-                  src={movie.poster}
-                  height='200px'
-                />
+              <Link
+                to='/filmdetail'>{
+                  <img
+                    src={movie.poster}
+                    height='200px'
+                    />
+                  }
+              </Link>
+
+
                 <p
                   onClick={() => {
                     this.props.deleteMovie(movie)

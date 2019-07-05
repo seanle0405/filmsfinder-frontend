@@ -182,6 +182,8 @@ class App extends Component {
                 {...routeProps}
                 userDiary={this.state.userDiary}
                 deleteMovie={this.deleteMovie}
+                movie={this.state.movie}
+                getMovie={this.getMovie}
               />
             )}
           />

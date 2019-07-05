@@ -51,9 +51,16 @@ class App extends Component {
 
   refreshCurrentUser = () => {
     currentUser = cookies.get('user')
-    this.setState({
-      userID: currentUser
-    })
+    if (currentUser) {
+      this.setState({
+        userID: currentUser
+      })
+    } else {
+      this.setState({
+        userID: '',
+        userDiary: ''
+      })
+    }
   }
 
 
@@ -66,7 +73,7 @@ class App extends Component {
     }))
   }
 
-  getUserDiary = (user) => {
+  getUserData = (user) => {
     fetch(baseURL + 'getUser/' + user)
     .then(res => res.json(),
       err=> console.log(err))
@@ -128,7 +135,7 @@ class App extends Component {
     this.refreshCurrentUser();
     if (currentUser) {
       console.log(currentUser, 'about to getdiary');
-      this.getUserDiary(currentUser)
+      this.getUserData(currentUser)
     }
   }
 
@@ -192,6 +199,7 @@ class App extends Component {
               (<SignIn {...routeProps}
                 baseURL={baseURL}
                 refreshCurrentUser={this.refreshCurrentUser}
+                getUserData={this.getUserData}
               />)}
           />
           <Route path='/update' component={ Update } />

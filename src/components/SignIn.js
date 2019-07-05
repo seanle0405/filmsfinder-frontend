@@ -30,13 +30,13 @@ class SignIn extends Component {
         this.handleAddCookie(json)
         this.setState({
           username: '',
-          url: ''
+          password: ''
         })
       })
   }
   handleAddCookie = (json) => {
     console.log(json)
-    cookies.set('user', json.foundUser)
+    cookies.set('user', json.foundUser, {path:'/'})
   }
   render() {
     return (

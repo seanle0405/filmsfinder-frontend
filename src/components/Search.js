@@ -23,7 +23,8 @@ class Search extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const movieQuery = this.state.search
-    fetch(baseURL+ `filmfinder/search/` + movieQuery)
+    // fetch(baseURL+ `filmfinder/search/` + movieQuery)
+    fetch(`http://localhost:3003/filmfinder/testsearch3`)
     .then(data => data.json())
     .then(parsedData => {
       console.log(parsedData);
@@ -65,22 +66,92 @@ class Search extends Component {
 
         </form>
 
+    <div className='searchResultsContainer'>
 
       {
         this.state.results ?
 
-        this.state.results.map(movie => (
-          <div>
+        this.state.results.map((movie) => (
+      <>
+          <div
+            className='searchresult'>
+
           <h3>{movie.title}</h3>
           <img
             src={movie.poster.length? movie.poster: "http://media1.myfolio.com/users/getrnd/images/mkay4a6gy1.jpg"}
             height='400px'
             // key={movies.imdb}
-            onClick={() => {
-              this.props.addToDiary(movie)
-            }}
           />
+          <button
+            onClick={() => {
+              this.props.addToDiary(movie, true)
+            }}
+            >Mark as Watched
+          </button>
+
+          <button
+            onClick={() => {
+              this.props.addToDiary(movie, false)
+            }}
+            >Add to Watchlist</button>
+
         </div>
+
+
+
+
+        <div
+          className='searchresult'>
+
+          <h3>{movie.title}</h3>
+          <img
+            src={movie.poster.length? movie.poster: "http://media1.myfolio.com/users/getrnd/images/mkay4a6gy1.jpg"}
+            height='400px'
+            // key={movies.imdb}
+          />
+          <button
+            onClick={() => {
+              this.props.addToDiary(movie, true)
+            }}
+            >Mark as Watched
+          </button>
+
+          <button
+            onClick={() => {
+              this.props.addToDiary(movie, false)
+            }}
+            >Add to Watchlist</button>
+
+      </div>
+
+
+
+
+      <div
+        className='searchresult'>
+          <h3>{movie.title}</h3>
+          <img
+            src={movie.poster.length? movie.poster: "http://media1.myfolio.com/users/getrnd/images/mkay4a6gy1.jpg"}
+            height='400px'
+            // key={movies.imdb}
+          />
+          <button
+            onClick={() => {
+              this.props.addToDiary(movie, true)
+            }}
+            >Mark as Watched
+          </button>
+
+          <button
+            onClick={() => {
+              this.props.addToDiary(movie, false)
+            }}
+            >Add to Watchlist</button>
+
+    </div>
+
+
+</>
 
         ))
 
@@ -93,7 +164,7 @@ class Search extends Component {
        :
       null
     }
-
+  </div>
 
       </div>
     </>

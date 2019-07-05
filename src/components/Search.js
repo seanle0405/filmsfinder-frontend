@@ -67,7 +67,7 @@ class Search extends Component {
             />
           </label>
 
-
+          <input type = "submit" value = "search"/>
         </form>
 
 

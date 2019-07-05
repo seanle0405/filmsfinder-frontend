@@ -114,7 +114,7 @@ class App extends Component {
           <Route path='/signin' component={ SignIn } />
           <Route path='/update' component={ Update } />
 
-          <Route path='/' component = {Splash} />
+          <Route path='/' component = { Splash } />
 
         </div>
       </Router>

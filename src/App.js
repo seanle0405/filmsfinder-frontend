@@ -31,11 +31,23 @@ let getRecentReleasesURL = showtimesBaseURL+moviesParam+showtimesAPIKey+releaseD
 
 let baseURL = `http://localhost:3003/filmfinder/`
 
+
+
+
+let myUser = cookies.get('user')
+
+
+
+
 class App extends Component {
   state = {
     userID: 'testUserName',
     userDiary: '',
     splash: ''
+  }
+
+  getUsername = () => {
+    console.log(myUser);
   }
 
 /// function to get all movies from collection using test route
@@ -83,6 +95,9 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+          <h1
+            onClick={this.getUsername}
+            > see user name in console</h1>
           <Route exact path='/' component={ Search } />
           <Route path='/myfilms' component={ MyFilms } />
           <Route path='/filmdetail' component={ FilmDetail } />

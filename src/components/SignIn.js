@@ -4,6 +4,10 @@ import Header from './Header.js'
 
 const cookies = new Cookies()
 
+let myUser = cookies.get('user')
+
+
+
 class SignIn extends Component {
   state = {
     username: '',
@@ -35,13 +39,21 @@ class SignIn extends Component {
       })
   }
   handleAddCookie = (json) => {
+
     cookies.set('user', json.foundUser, {path:'/'})
   }
+
+  getUsername = () => {
+    console.log(myUser);
+  }
+
   render() {
     return (
       <div>
         <Header />
-        <h2>Sign In</h2>
+        <h2
+          onClick={this.getUsername}
+        >Sign In</h2>
         <form onSubmit={this.handleSubmitLogIn}>
           <label>
             <input

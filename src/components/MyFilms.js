@@ -35,6 +35,7 @@ class MyFilms extends Component {
             this.props.userDiary.map((movie) => (
               <>
               <Link
+                onClick={() => this.props.getMovie(movie)}
                 to='/filmdetail'>{
                   <img
                     src={movie.poster}

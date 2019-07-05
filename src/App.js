@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import Cookies from 'universal-cookie'
 import logo from './logo.svg';
 
 import './App.css';
@@ -22,9 +23,13 @@ import Materialized from './materialize/css/materialize.css'
 
 
 
+
+const cookies = new Cookies()
+
+let myUser = cookies.get('user')
+
 let cityId = 3945
 let releaseDate = '06-01-19'
-
 let showtimesBaseURL = `https://api.internationalshowtimes.com/v4/`
 let moviesParam = 'movies/'
 let timesParam = 'showtimes/'
@@ -33,13 +38,7 @@ let releaseDateParam = '&release_date_from=' + releaseDate
 let countryParam = `&countries=US`
 let fieldsParam = `&all_fields=true`
 let cityParam = `&city_ids=` + cityId
-
-
-
-
 let getRecentReleasesURL = showtimesBaseURL+moviesParam+showtimesAPIKey+releaseDateParam+countryParam+fieldsParam+cityParam
-
-
 
 let baseURL = `http://localhost:3003/filmfinder/`
 
@@ -48,6 +47,10 @@ class App extends Component {
     userID: '',
     userDiary: '',
     splash: ''
+  }
+
+  getUser = () => {
+    console.log(myUser);
   }
 
   setUser = (user) => {
@@ -153,6 +156,9 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+          <h2
+            onClick={this.getUser}
+            >click to get user in console</h2>
 
           <Route exact path='/' component = {Splash} />
 
@@ -190,9 +196,13 @@ class App extends Component {
                 setUser={this.setUser}
                />)}
           />
-
-          <Route path='/signin' component={ SignIn } />
-
+          <Route
+            path='/signin'
+            render={(routeProps) =>
+              (<SignIn {...routeProps}
+                baseURL={baseURL}
+              />)}
+          />
           <Route path='/update' component={ Update } />
 
 

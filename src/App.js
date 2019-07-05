@@ -171,6 +171,7 @@ class App extends Component {
               <Search
                 {...routeProps}
                 addToDiary={this.addToDiary}
+                currentUser={this.state.userID}
             />)}
           />
 

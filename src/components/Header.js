@@ -23,7 +23,7 @@ class Header extends Component {
             {'  '}
             <Link to='/search'>{ 'Search' }</Link>
             {'  '}
-            <Link to='/myfilms'>{ 'My Films' }</Link>
+            <Link to='/myfilms'>{ 'My Films'  }</Link>
             {'  '}
             { this.props.currentUser ?
 

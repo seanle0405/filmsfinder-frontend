@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 
 let showtimesAPIKey = `?apikey=dHNYEAlSVxOXC4Eqy6b8aufIXC7utYnu`
@@ -47,7 +48,12 @@ class Search extends Component {
   render() {
     return (
      <>
+
+
+
+
       <div>
+
 
         <form
           onSubmit={this.handleSubmit}
@@ -81,18 +87,42 @@ class Search extends Component {
               height='400px'
               // key={movies.imdb}
             />
+            {
+            !this.props.currentUser ?
+            <>
+              <Link to='/SignIn'> {
+              <button
+                onClick={() => {
+                  this.props.addToDiary(movie, true)
+                }}
+                >Mark as Watched
+              </button>
+
+              }
+            </Link>
+            <Link to='/SignIn'>
+              <button
+                onClick={() => {
+                  this.props.addToDiary(movie, false)
+                }}
+                >Add to Watchlist</button>
+            </Link>
+          </>
+            :
+            <>
             <button
               onClick={() => {
                 this.props.addToDiary(movie, true)
               }}
               >Mark as Watched
             </button>
-
             <button
               onClick={() => {
                 this.props.addToDiary(movie, false)
               }}
               >Add to Watchlist</button>
+            </>
+          }
 
           </div>
         </>

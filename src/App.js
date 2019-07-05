@@ -48,7 +48,8 @@ class App extends Component {
   state = {
     userID: currentUser,
     userDiary: '',
-    splash: ''
+    splash: '',
+    movie: ''
   }
 
   refreshCurrentUser = () => {
@@ -144,7 +145,9 @@ class App extends Component {
 
   //function above to get all movies from collection using test route
 
-
+  getMovie = (movie) => {
+    this.setState({movie: movie})
+  }
 
   render(){
     return (
@@ -184,7 +187,14 @@ class App extends Component {
           />
 
 
-          <Route path='/filmdetail' component={ FilmDetail } />
+          <Route path='/filmdetail'
+            render={(routeProps) => (
+              <FilmDetail
+                {...routeProps}
+                movie={this.state.movie}
+              />
+            )}
+          />
 
           <Route
             path='/createaccount'

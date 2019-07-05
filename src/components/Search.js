@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import Header from './Header.js'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+
 
 let showtimesAPIKey = `?apikey=dHNYEAlSVxOXC4Eqy6b8aufIXC7utYnu`
 
@@ -47,7 +48,12 @@ class Search extends Component {
   render() {
     return (
      <>
+
+
+
+
       <div>
+
 
         <form
           onSubmit={this.handleSubmit}
@@ -62,25 +68,64 @@ class Search extends Component {
             />
           </label>
 
-
+          <input type = "submit" value = "search"/>
         </form>
 
+    <div className='searchResultsContainer'>
 
       {
         this.state.results ?
 
-        this.state.results.map(movie => (
-          <div>
-          <h3>{movie.title}</h3>
-          <img
-            src={movie.poster.length? movie.poster: "http://media1.myfolio.com/users/getrnd/images/mkay4a6gy1.jpg"}
-            height='400px'
-            // key={movies.imdb}
-            onClick={() => {
-              this.props.addToDiary(movie)
-            }}
-          />
-        </div>
+        this.state.results.map((movie) => (
+        <>
+          <div
+              className='searchresult'>
+
+            <h3>{movie.title}</h3>
+            <img
+              src={movie.poster.length? movie.poster: "http://media1.myfolio.com/users/getrnd/images/mkay4a6gy1.jpg"}
+              height='400px'
+              // key={movies.imdb}
+            />
+            {
+            !this.props.currentUser ?
+            <>
+              <Link to='/SignIn'> {
+              <button
+                onClick={() => {
+                  this.props.addToDiary(movie, true)
+                }}
+                >Mark as Watched
+              </button>
+
+              }
+            </Link>
+            <Link to='/SignIn'>
+              <button
+                onClick={() => {
+                  this.props.addToDiary(movie, false)
+                }}
+                >Add to Watchlist</button>
+            </Link>
+          </>
+            :
+            <>
+            <button
+              onClick={() => {
+                this.props.addToDiary(movie, true)
+              }}
+              >Mark as Watched
+            </button>
+            <button
+              onClick={() => {
+                this.props.addToDiary(movie, false)
+              }}
+              >Add to Watchlist</button>
+            </>
+          }
+
+          </div>
+        </>
 
         ))
 
@@ -93,7 +138,7 @@ class Search extends Component {
        :
       null
     }
-
+  </div>
 
       </div>
     </>

@@ -26,9 +26,18 @@ class SignIn extends Component {
       .then(response => {
         return response.json()
       })
-      .then(json => console.log(json),
-        error => console.log(error))
-    }
+      .then(json => {
+        this.handleAddCookie(json)
+        this.setState({
+          username: '',
+          url: ''
+        })
+      })
+  }
+  handleAddCookie = (json) => {
+    console.log(json)
+    cookies.set('user', json.foundUser)
+  }
   render() {
     return (
       <div>

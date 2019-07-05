@@ -144,11 +144,19 @@ class App extends Component {
       <>
       <Router>
         <div className="App">
-          <h2
-            > Hi {currentUser}</h2>
+          {
+            currentUser ?
+            <h2
+              >Welcome {currentUser}</h2>
+              :
+              null
+          }
+
 
           <Header
-            refreshCurrentUser={this.refreshCurrentUser}/>
+            refreshCurrentUser={this.refreshCurrentUser}
+            currentUser={currentUser}
+          />
 
 
 

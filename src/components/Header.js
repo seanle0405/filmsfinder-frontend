@@ -25,13 +25,22 @@ class Header extends Component {
             {'  '}
             <Link to='/myfilms'>{ 'My Films' }</Link>
             {'  '}
-            {/*if logged out, .inks for signup an create account will render*/}
-            <Link to='/SignIn'>{ 'Sign In' }</Link>
-            {'  '}
-            <Link to='/CreateAccount'>{ 'Create Account' }</Link>
-            {/*if logged in, username and link to log out will render*/}
-            {'  '}
-            <Link to='/' refresh= 'true' onClick={ this.handleLogOut }>{ 'Log Out' }</Link>
+            { this.props.currentUser ?
+
+              <Link to='/' refresh= 'true' onClick={ this.handleLogOut }>{ 'Log Out' }</Link>
+              :
+              <>
+
+              <Link to='/SignIn'>{ 'Sign In' }</Link> {' '}
+
+              <Link to='/CreateAccount'>{ 'Create Account' }</Link> {' '}
+
+              </>
+
+            }
+
+
+
           </nav>
       </div>
     )

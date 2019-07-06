@@ -53,7 +53,7 @@ class CreateAccount extends Component {
               value={this.state.username}
               placeholder='Username'
             />
-          </label>
+          </label><br/>
           <label>
             <input
               type='password'
@@ -63,7 +63,7 @@ class CreateAccount extends Component {
               value={this.state.password}
               placeholder='Password'
             />
-          </label>
+          </label><br/>
           <input
             type='submit'
             value='Create Account'

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 
 class Splash extends Component {
-	
+
 	render() {
 
 		return (
@@ -14,13 +14,17 @@ class Splash extends Component {
 
 					this.props.splash.map( movie => (
 
-						
-						<h3>{movie.title}</h3>
+
+						<>
+							<img href = {movie.poster} />
+							<h3> {movie.title}</h3>
+						</>
+
 					))
 					:
 					''
-				
-				
+
+
 				}
 			</div>
 

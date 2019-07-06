@@ -152,6 +152,7 @@ class App extends Component {
   //function above to get all movies from collection using test route
 
   getMovie = (movie) => {
+    console.log(movie);
     this.setState({movie: movie})
   }
 

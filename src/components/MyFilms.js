@@ -14,12 +14,13 @@ class MyFilms extends Component {
     return (
       <>
 
-      <Router>
+      <>
         <Link
           to='/myfilms/'
           >
           <h3>My Movies</h3>
         </Link>
+
         <Link
           to='/myfilms/watchlist'
           >
@@ -58,7 +59,7 @@ class MyFilms extends Component {
 
 
 
-      </Router>
+      </>
 
 
       </>

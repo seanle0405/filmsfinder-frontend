@@ -35,12 +35,12 @@ let releaseDateParam = '&release_date_from=' + releaseDate
 let countryParam = `&countries=US`
 let fieldsParam = `&all_fields=true`
 let cityParam = `&city_ids=` + cityId
-let getRecentReleasesURL = showtimesBaseURL+moviesParam+showtimesAPIKey+releaseDateParam+countryParam+fieldsParam+cityParam
+// let getRecentReleasesURL = showtimesBaseURL+moviesParam+showtimesAPIKey+releaseDateParam+countryParam+fieldsParam+cityParam
 ////////////////////////////////////////////////////
 
 let baseURL = `http://localhost:3003/filmfinder/`
 
-
+let getRecentReleasesURL = baseURL + 'recent_releases/' + cityId
 
 
 let myUser = cookies.get('user')

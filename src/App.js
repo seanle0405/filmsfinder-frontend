@@ -234,10 +234,16 @@ class App extends Component {
             render={(routeProps) => (
               <FilmDetail
                 {...routeProps}
+                baseURL={baseURL}
                 movie={this.state.movie}
                 getMovie={this.getMovie}
+
+                showtimesBaseURL={showtimesBaseURL}
+                showtimesAPIKey={showtimesAPIKey}
+
                 addToDiary={this.addToDiary}
                 currentUser={this.state.userID}
+
               />
             )}
           />

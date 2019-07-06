@@ -46,6 +46,7 @@ class CreateAccount extends Component {
           password: '',
           city: ''
         })
+        this.props.history.push('/')
       })
   }
 
@@ -91,6 +92,7 @@ class CreateAccount extends Component {
           </datalist><br/>
 
           <input
+
             type='submit'
             value='Create Account'
           />

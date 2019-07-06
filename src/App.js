@@ -56,6 +56,7 @@ class App extends Component {
     movie: ''
   }
 
+
   refreshCurrentUser = () => {
     currentUser = cookies.get('user')
     if (currentUser) {

@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import Cookies from 'universal-cookie'
-
+import cities from "../data/showtimesCities.js"
 
 const cookies = new Cookies()
 
 class CreateAccount extends Component {
   state = {
     username: '',
-    password: ''
+    password: '',
+    city: '',
+    cities_list: cities,
   }
   handleChange = (event) => {
     this.setState({[event.target.id]: event.target.value})
@@ -19,7 +21,8 @@ class CreateAccount extends Component {
       body:
         JSON.stringify({
           username: this.state.username,
-          password: this.state.password
+          password: this.state.password,
+          city: this.state.city
         }),
       headers: { 'Content-Type': 'application/json'}
     })
@@ -64,6 +67,13 @@ class CreateAccount extends Component {
               placeholder='Password'
             />
           </label>
+          <label></label>
+          <input  type="text" onChange={this.handleChange} value={this.state.city} id="city" placeholder="City" list="cities_list"/>
+          <datalist id = "cities_list">
+            {this.state.cities_list.map((city) =>{
+              return(<option value = {city.name}/>)
+            } )}
+          </datalist>
           <input
             type='submit'
             value='Create Account'

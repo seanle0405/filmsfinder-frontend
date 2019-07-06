@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/filmsfinder-frontend/static/css/main.b0d95bae.chunk.css",
-    "main.js": "/filmsfinder-frontend/static/js/main.be44ec8e.chunk.js",
-    "main.js.map": "/filmsfinder-frontend/static/js/main.be44ec8e.chunk.js.map",
+    "main.css": "/filmsfinder-frontend/static/css/main.01fff67d.chunk.css",
+    "main.js": "/filmsfinder-frontend/static/js/main.e024d1fb.chunk.js",
+    "main.js.map": "/filmsfinder-frontend/static/js/main.e024d1fb.chunk.js.map",
     "runtime~main.js": "/filmsfinder-frontend/static/js/runtime~main.0951a968.js",
     "runtime~main.js.map": "/filmsfinder-frontend/static/js/runtime~main.0951a968.js.map",
-    "static/js/2.5fff9520.chunk.js": "/filmsfinder-frontend/static/js/2.5fff9520.chunk.js",
-    "static/js/2.5fff9520.chunk.js.map": "/filmsfinder-frontend/static/js/2.5fff9520.chunk.js.map",
+    "static/js/2.d8161b7d.chunk.js": "/filmsfinder-frontend/static/js/2.d8161b7d.chunk.js",
+    "static/js/2.d8161b7d.chunk.js.map": "/filmsfinder-frontend/static/js/2.d8161b7d.chunk.js.map",
     "index.html": "/filmsfinder-frontend/index.html",
-    "precache-manifest.4b4c114353026e7f4ff020f0b5b1b7c6.js": "/filmsfinder-frontend/precache-manifest.4b4c114353026e7f4ff020f0b5b1b7c6.js",
+    "precache-manifest.2044d715482d2ccbf38890abedf6d89b.js": "/filmsfinder-frontend/precache-manifest.2044d715482d2ccbf38890abedf6d89b.js",
     "service-worker.js": "/filmsfinder-frontend/service-worker.js",
-    "static/css/main.b0d95bae.chunk.css.map": "/filmsfinder-frontend/static/css/main.b0d95bae.chunk.css.map"
+    "static/css/main.01fff67d.chunk.css.map": "/filmsfinder-frontend/static/css/main.01fff67d.chunk.css.map"
   }
 }

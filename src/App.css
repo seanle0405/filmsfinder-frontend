@@ -42,9 +42,7 @@ img:hover {
 }
 
 button {
-  display: block;
-  margin: 0 45%;
-
+  margin: 2% 20%
 }
 
 @keyframes App-logo-spin {

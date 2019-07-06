@@ -82,18 +82,19 @@ class Search extends Component {
               className='movie'>
 
             <h3>{movie.title}</h3>
-            <Link
-              key={movie.imdb_id}
-              onClick={() => this.props.getMovie(movie)}
-              to='/filmdetail'>{
-                <img
-                  src={movie.poster.length? movie.poster: "http://media1.myfolio.com/users/getrnd/images/mkay4a6gy1.jpg"}
-                  height='400px'
-                />
-              }
-            </Link>
+            <div>
+              <Link
+                key={movie.imdb_id}
+                onClick={() => this.props.getMovie(movie)}
+                to='/filmdetail'>{
+                  <img
+                    src={movie.poster.length? movie.poster: "http://media1.myfolio.com/users/getrnd/images/mkay4a6gy1.jpg"}
+                    height='400px'
+                  />
+                }
+              </Link>
 
-                {/*key={movies.imdb}*/}
+
 
             {
             !this.props.currentUser ?
@@ -102,6 +103,8 @@ class Search extends Component {
                 key={movie.imdb_id}
                 to='/SignIn'> {
               <button
+                type="button"
+                className="btn btn-primary"
                 onClick={() => {
                   this.props.addToDiary(movie, true)
                 }}
@@ -112,6 +115,8 @@ class Search extends Component {
             </Link>
             <Link to='/SignIn'>
               <button
+                type="button"
+                className="btn btn-primary"
                 onClick={() => {
                   this.props.addToDiary(movie, false)
                 }}
@@ -121,18 +126,23 @@ class Search extends Component {
             :
             <>
             <button
+              type="button"
+              className="btn btn-primary"
               onClick={() => {
                 this.props.addToDiary(movie, true)
               }}
               >Mark as Watched
             </button>
             <button
+              type="button"
+              className="btn btn-primary"
               onClick={() => {
                 this.props.addToDiary(movie, false)
               }}
               >Add to Watchlist</button>
             </>
           }
+        </div>
 
           </div>
         </>

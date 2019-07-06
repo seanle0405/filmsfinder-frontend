@@ -14,14 +14,11 @@ class FilmDetail extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const enterReview = this.state.review
-    
+
   }
   render() {
     return (
       <div>
-        <Link
-          to='/myfilms'> { <h6>Back to My Films</h6> }
-        </Link>
         <h2>{this.props.movie.title}</h2>
         <img
           src={this.props.movie.poster}

@@ -31,6 +31,8 @@ img:hover {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  text-align: center;
+  margin: 0 auto
 }
 
 .movie {

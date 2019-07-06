@@ -10,7 +10,7 @@ class WatchedMovies extends Component {
   render() {
     return(
       <>
-      <h3>Movies I've Seen</h3>
+      <div className="movieContainer">
       {
         this.props.userDiary.length ?
           this.props.userDiary.filter((movie) =>  movie.watched).map((movie,index) => (
@@ -21,28 +21,37 @@ class WatchedMovies extends Component {
               key={movie.imdb_id}
               onClick={() => this.props.getMovie(movie)}
               to='/filmdetail'>{
+                <>
+                <h3
+                  className="movieTitles"
+                  >{movie.title}
+                  </h3>
                 <img
                   key={`${movie.imdb_id}_${index}`}
                   src={movie.poster}
                   height='400px'
                   />
+                </>
                 }
             </Link>
 
-              <p
+              <button
+                type="button"
+                className="btn btn-danger"
                 key={`${movie.imdb_id}_${index}_delete`}
                 onClick={() => {
                   this.props.deleteMovie(movie)
                 }}
-                >X</p>
+                >X</button>
               </div>
             </>
           )
         )
         : null
       }
-
+      </div>
       </>
+
     )
   }
 }

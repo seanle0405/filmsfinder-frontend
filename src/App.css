@@ -23,9 +23,6 @@
   color: #61dafb;
 }
 
-img:hover {
-  cursor: pointer
-}
 
 .movieContainer {
   display: flex;
@@ -43,6 +40,14 @@ img:hover {
 
 button {
   margin: 2% 20%
+}
+
+Link:hover {
+  cursor: pointer
+}
+
+.movieTitles {
+  color: darkblue
 }
 
 @keyframes App-logo-spin {

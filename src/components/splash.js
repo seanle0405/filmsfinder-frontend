@@ -8,7 +8,7 @@ class Splash extends Component {
 		return (
 
       		<div>
-				<h1> Recent Releases</h1>
+				<blockquote class ="blockquote"> Recent Releases</blockquote>
 				{
 					this.props.splash ?
 

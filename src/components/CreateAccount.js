@@ -4,6 +4,17 @@ import cities from "../data/showtimesCities.js"
 
 const cookies = new Cookies()
 
+const getCityId = (cityName) =>{
+  let cityId = 2215
+  for(let i = 0; i < cities.length; i++){
+    if(cityName == cities[i].name){
+      cityId = cities[i].id
+      break
+    }    
+  }
+  return cityId
+}
+
 class CreateAccount extends Component {
   state = {
     username: '',
@@ -22,7 +33,8 @@ class CreateAccount extends Component {
         JSON.stringify({
           username: this.state.username,
           password: this.state.password,
-          city: this.state.city
+          city: this.state.city,
+          city_id: getCityId(this.state.city)     
         }),
       headers: { 'Content-Type': 'application/json'}
     })
@@ -31,7 +43,8 @@ class CreateAccount extends Component {
         this.handleAddCookie(json)
         this.setState({
           username: '',
-          password: ''
+          password: '',
+          city: ''
         })
       })
   }

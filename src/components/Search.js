@@ -76,6 +76,7 @@ class Search extends Component {
         this.state.results ?
 
         this.state.results.map((movie) => (
+
         <>
         <div className="card mb-3 cssCard">
           <div className="row no-gutters">
@@ -88,12 +89,10 @@ class Search extends Component {
                 <img
                   src={movie.poster.length? movie.poster: "http://media1.myfolio.com/users/getrnd/images/mkay4a6gy1.jpg"}
                   className="card-img"
-
                 />
-
               }
-            </Link>
-          </div>
+              </Link>
+            </div>
           <div className="col-md-8">
             <div className="card-body">
               <h5 className="card-title">{movie.title}</h5>
@@ -107,6 +106,54 @@ class Search extends Component {
         </div>
       </div>
 
+      {
+      !this.props.currentUser ?
+      <>
+        <Link
+          key={movie.imdb_id}
+          to='/SignIn'> {
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() => {
+            this.props.addToDiary(movie, true)
+          }}
+          >Mark as Watched
+        </button>
+          }
+        </Link>
+        <Link
+        to='/SignIn'> {
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              this.props.addToDiary(movie, false)
+            }}
+            >Add to Watchlist</button>
+          }
+          </Link>
+      </>
+      :
+      <>
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={() => {
+          this.props.addToDiary(movie, true)
+        }}
+        >Mark as Watched
+      </button>
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={() => {
+          this.props.addToDiary(movie, false)
+        }}
+        >Add to Watchlist</button>
+      </>
+    }
+
 
         </>
 
@@ -115,7 +162,10 @@ class Search extends Component {
         :
         null
       }
+
+
   </div>
+
 
 
 

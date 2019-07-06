@@ -10,7 +10,7 @@ const getCityId = (cityName) =>{
     if(cityName == cities[i].name){
       cityId = cities[i].id
       break
-    }    
+    }
   }
   return cityId
 }
@@ -34,7 +34,7 @@ class CreateAccount extends Component {
           username: this.state.username,
           password: this.state.password,
           city: this.state.city,
-          city_id: getCityId(this.state.city)     
+          city_id: getCityId(this.state.city)
         }),
       headers: { 'Content-Type': 'application/json'}
     })

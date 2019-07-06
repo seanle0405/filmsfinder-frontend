@@ -466,6 +466,7 @@ mark,
 .blockquote {
   margin-bottom: 1rem;
   font-size: 1.25rem;
+  color : orange;
 }
 
 .blockquote-footer {

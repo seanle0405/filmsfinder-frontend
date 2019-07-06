@@ -214,6 +214,8 @@ class App extends Component {
                 baseURL={baseURL}
                 movie={this.state.movie}
                 getMovie={this.getMovie}
+                showtimesBaseURL={showtimesBaseURL}
+                showtimesAPIKey={showtimesAPIKey}
               />
             )}
           />

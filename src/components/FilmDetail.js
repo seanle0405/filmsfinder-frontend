@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
+const city_id = 2215
+const movie_id = 47080
+
 class FilmDetail extends Component {
   state = {
     review: ''
@@ -16,6 +19,21 @@ class FilmDetail extends Component {
     const enterReview = this.state.review
 
   }
+  getShowtimes = (event) => {
+    event.preventDefault()
+    const city = city_id
+    const movie = this.props.movie.showtimes_id
+    fetch(this.props.baseURL + 'showtimes/' + city + '/' + movie)
+      .then(data => data.json())
+      .then(parsedData => {
+        console.log(parsedData)
+        if (parsedData.length) {
+          this.setState({
+            showtimes: parsedData
+          })
+        }
+      })
+  }
   render() {
     return (
       <div>
@@ -25,8 +43,6 @@ class FilmDetail extends Component {
           height='400px'
         />
         <h4>Released: {this.props.movie.release_dates}</h4>
-        <h4>Director: </h4>
-        <h4>Cast: </h4>
         <h4>Genre: {this.props.movie.genres}</h4>
         <h4>Synopsis: {this.props.movie.synopsis}</h4>
         <h4>IMDB Rating: {this.props.movie.imdb_rating}</h4>
@@ -58,6 +74,20 @@ class FilmDetail extends Component {
             />
           </label>
         </form>
+        <div>
+          {
+            this.state.showtimes ?
+            this.state.showtimes.map((movie) => (
+              <h4>Theater: {movie.cinema_name}</h4>
+              movie.showtimes.map((showtimes) => (
+                <h3>{showtimes.start_at}</h3>
+              )
+            )
+          )
+          : null
+
+          }
+        </div>
       </div>
     )
   }

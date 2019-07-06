@@ -210,6 +210,7 @@ class App extends Component {
             render={(routeProps) => (
               <FilmDetail
                 {...routeProps}
+                baseURL={baseURL}
                 movie={this.state.movie}
                 getMovie={this.getMovie}
               />

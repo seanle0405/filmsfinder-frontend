@@ -5,6 +5,17 @@ class FilmDetail extends Component {
   state = {
     review: ''
   }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.id] : event.target.value
+    })
+  }
+  handleSubmit = (event) => {
+    event.preventDefault()
+    const enterReview = this.state.review
+    
+  }
   render() {
     return (
       <div>
@@ -22,9 +33,12 @@ class FilmDetail extends Component {
         <h4>Cast: </h4>
         <h4>Synopsis: {this.props.movie.synopsis}</h4>
         <h4>IMDB Rating: {this.props.movie.imdb_rating}</h4>
-        <form>
+        <form
+          onSubmit={this.handleSubmit}
+        >
           <label>
             <input
+              onChange={this.handleChange}
               id='review'
               type='textarea'
               placeholder='What did you think?'

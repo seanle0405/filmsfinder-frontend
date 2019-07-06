@@ -13,6 +13,7 @@ class MyFilms extends Component {
   render() {
     return (
       <>
+
       {
         this.props.currentUser ?
         <>
@@ -30,6 +31,7 @@ class MyFilms extends Component {
           <Route
             exact
             path='/myfilms'
+
             render = {(routeProps) => (
               <WatchedMovies
                 {...routeProps}

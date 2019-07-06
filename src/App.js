@@ -56,6 +56,7 @@ class App extends Component {
     movie: ''
   }
 
+
   refreshCurrentUser = () => {
     currentUser = cookies.get('user')
     if (currentUser) {
@@ -75,7 +76,7 @@ class App extends Component {
     fetch(getRecentReleasesURL)
     .then(data => data.json(),
     err => console.log(err))
-    .then(parsedData => this.setState({splash: parsedData}, () => {
+    .then(parsedData => this.setState({splash: parsedData.movies}, () => {
       console.log(this.state.splash)
     }))
   }
@@ -151,6 +152,7 @@ class App extends Component {
   //function above to get all movies from collection using test route
 
   getMovie = (movie) => {
+    console.log(movie);
     this.setState({movie: movie})
   }
 
@@ -177,7 +179,18 @@ class App extends Component {
 
 
 
-          <Route exact path='/' component = {Splash} />
+          <Route exact 
+          path='/' 
+          render={(routeProps) => (
+            <Splash
+            {...routeProps}
+            splash = {this.state.splash}
+
+           /> 
+           )} 
+          />
+          
+           
 
           <Route
             exact
@@ -189,6 +202,7 @@ class App extends Component {
                 currentUser={this.state.userID}
                 movie={this.state.movie}
                 getMovie={this.getMovie}
+
             />)}
           />
 

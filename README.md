@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was **bootstrapped** with [Create React App](https://github.com/facebook/create-react-app).
 
 # Problem:
 "I want to keep track of the movies on a To-Watch list, but want to know where to find the movie so that I can actually start working through my list!"

@@ -97,6 +97,9 @@ class Search extends Component {
             <div className="card-body">
               <h5 className="card-title">{movie.title}</h5>
               <p className="card-text">
+                {movie.synopsis}
+              </p>
+              <p className="card-text">
                 <small className="text-muted">
                   IMDB score: {movie.imdb_rating}
                 </small>

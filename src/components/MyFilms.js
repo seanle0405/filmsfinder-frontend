@@ -26,7 +26,6 @@ class MyFilms extends Component {
           <h3>Watchlist</h3>
         </Link>
         <Route
-          exact
           path='/myfilms'
           render = {(routeProps) => (
             <WatchedMovies
@@ -40,7 +39,6 @@ class MyFilms extends Component {
           />
 
           <Route
-            exact
             path='/myfilms/watchlist'
             render = {(routeProps) => (
               <WatchList

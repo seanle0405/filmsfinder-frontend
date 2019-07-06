@@ -30,7 +30,7 @@ class FilmDetail extends Component {
         <h4>Genre: {this.props.movie.genres}</h4>
         <h4>Synopsis: {this.props.movie.synopsis}</h4>
         <h4>IMDB Rating: {this.props.movie.imdb_rating}</h4>
-        
+
         <form
           onSubmit={this.handleSubmit}
         >
@@ -47,6 +47,16 @@ class FilmDetail extends Component {
             type='submit'
             value='save'
           />
+        </form>
+        <form
+          onSubmit={this.getShowtimes}
+        >
+          <label>
+            <input
+              type='submit'
+              value='get showtimes'
+            />
+          </label>
         </form>
       </div>
     )

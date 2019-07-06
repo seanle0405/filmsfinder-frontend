@@ -77,11 +77,15 @@ class FilmDetail extends Component {
         <div>
           {
             this.state.showtimes ?
+
             this.state.showtimes.map((movie) => (
-              <h4>Theater: {movie.cinema_name}</h4>
-              movie.showtimes.map((showtimes) => (
-                <h3>{showtimes.start_at}</h3>
-              )
+              movie.showtimes.map((times) => (
+                <div>
+                <h4>{movie.cinema_name}</h4>
+                <li>{times.start_at}</li>
+                </div>
+              ))
+
             )
           )
           : null

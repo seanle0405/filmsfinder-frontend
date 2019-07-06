@@ -179,18 +179,18 @@ class App extends Component {
 
 
 
-          <Route exact 
-          path='/' 
+          <Route exact
+          path='/'
           render={(routeProps) => (
             <Splash
             {...routeProps}
             splash = {this.state.splash}
 
-           /> 
-           )} 
+           />
+           )}
           />
-          
-           
+
+
 
           <Route
             exact
@@ -215,6 +215,7 @@ class App extends Component {
                 deleteMovie={this.deleteMovie}
                 movie={this.state.movie}
                 getMovie={this.getMovie}
+                currentUser={this.state.userID}
               />
             )}
           />
@@ -226,6 +227,8 @@ class App extends Component {
                 {...routeProps}
                 movie={this.state.movie}
                 getMovie={this.getMovie}
+                addToDiary={this.addToDiary}
+                currentUser={this.state.userID}
               />
             )}
           />

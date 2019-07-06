@@ -19,7 +19,57 @@ class FilmDetail extends Component {
         <h4>Cast: </h4>
         <h4>Synopsis: {this.props.movie.synopsis}</h4>
         <h4>IMDB Rating: {this.props.movie.imdb_rating}</h4>
-      </div>
+
+
+      {
+      !this.props.currentUser ?
+      <>
+        <Link
+          key={this.props.movie.imdb_id}
+          to='/SignIn'> {
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() => {
+            this.props.addToDiary(this.props.movie, true)
+          }}
+          >Mark as Watched
+        </button>
+          }
+        </Link>
+        <Link
+        to='/SignIn'> {
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              this.props.addToDiary(this.props.movie, false)
+            }}
+            >Add to Watchlist</button>
+          }
+          </Link>
+      </>
+      :
+      <>
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={() => {
+          this.props.addToDiary(this.props.movie, true)
+        }}
+        >Mark as Watched
+      </button>
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={() => {
+          this.props.addToDiary(this.props.movie, false)
+        }}
+        >Add to Watchlist</button>
+      </>
+    }
+    </div>
+
     )
   }
 }

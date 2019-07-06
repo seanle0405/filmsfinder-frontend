@@ -64,7 +64,7 @@ class SignIn extends Component {
     return (
       <div>
         <h2>Sign In</h2>
-        <form onSubmit={this.handleSubmitLogIn}>
+        <form onSubmit={this.handleSubmitLogIn} className = 'form-control'>
           <label>
             <input
               type='text'

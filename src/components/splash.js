@@ -14,8 +14,8 @@ class Splash extends Component {
 
 					this.props.splash.map( movie => (
 
-
-						<img href = '#'> {movie.title}</img>
+						
+						<h3>{movie.title}</h3>
 					))
 					:
 					''

@@ -47,52 +47,108 @@ class FilmDetail extends Component {
         <h4>Synopsis: {this.props.movie.synopsis}</h4>
         <h4>IMDB Rating: {this.props.movie.imdb_rating}</h4>
 
-        <form
-          onSubmit={this.handleSubmit}
-        >
-          <label>
-            <input
-              onChange={this.handleChange}
-              id='review'
-              type='textarea'
-              placeholder='What did you think?'
-              value={this.state.review}
-            />
-          </label>
-          <input
-            type='submit'
-            value='save'
-          />
-        </form>
-        <form
-          onSubmit={this.getShowtimes}
-        >
-          <label>
-            <input
-              type='submit'
-              value='get showtimes'
-            />
-          </label>
-        </form>
-        <div>
-          {
-            this.state.showtimes ?
 
-            this.state.showtimes.map((movie) => (
-              movie.showtimes.map((times) => (
-                <div>
-                <h4>{movie.cinema_name}</h4>
-                <li>{times.start_at}</li>
-                </div>
-              ))
 
-            )
-          )
-          : null
 
+
+
+      {
+      !this.props.currentUser ?
+      <>
+        <Link
+          key={this.props.movie.imdb_id}
+          to='/SignIn'> {
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() => {
+            this.props.addToDiary(this.props.movie, true)
+          }}
+          >Mark as Watched
+        </button>
           }
-        </div>
-      </div>
+        </Link>
+        <Link
+        to='/SignIn'> {
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              this.props.addToDiary(this.props.movie, false)
+            }}
+            >Add to Watchlist</button>
+          }
+          </Link>
+      </>
+      :
+      <>
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={() => {
+          this.props.addToDiary(this.props.movie, true)
+        }}
+        >Mark as Watched
+      </button>
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={() => {
+          this.props.addToDiary(this.props.movie, false)
+        }}
+        >Add to Watchlist</button>
+      </>
+    }
+
+    <form
+      onSubmit={this.handleSubmit}
+    >
+      <label>
+        <input
+          onChange={this.handleChange}
+          id='review'
+          type='textarea'
+          placeholder='What did you think?'
+          value={this.state.review}
+        />
+      </label>
+      <input
+        type='submit'
+        value='save'
+      />
+    </form>
+    <form
+      onSubmit={this.getShowtimes}
+    >
+      <label>
+        <input
+          type='submit'
+          value='get showtimes'
+        />
+      </label>
+    </form>
+    <div>
+      {
+        this.state.showtimes ?
+
+        this.state.showtimes.map((movie) => (
+          movie.showtimes.map((times) => (
+            <div>
+            <h4>{movie.cinema_name}</h4>
+            <li>{times.start_at}</li>
+            </div>
+          ))
+
+        )
+      )
+      : null
+
+      }
+    </div>
+
+    </div>
+
+
     )
   }
 }

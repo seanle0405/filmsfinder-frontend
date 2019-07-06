@@ -25,7 +25,7 @@ const cookies = new Cookies()
 let currentUser = cookies.get('user')
 
 //// building Splash URL
-let cityId = 3945
+let cityId = 2215
 let releaseDate = '06-01-19'
 let showtimesBaseURL = `https://api.internationalshowtimes.com/v4/`
 let moviesParam = 'movies/'
@@ -35,12 +35,19 @@ let releaseDateParam = '&release_date_from=' + releaseDate
 let countryParam = `&countries=US`
 let fieldsParam = `&all_fields=true`
 let cityParam = `&city_ids=` + cityId
-let getRecentReleasesURL = showtimesBaseURL+moviesParam+showtimesAPIKey+releaseDateParam+countryParam+fieldsParam+cityParam
+// let getRecentReleasesURL = showtimesBaseURL+moviesParam+showtimesAPIKey+releaseDateParam+countryParam+fieldsParam+cityParam
 ////////////////////////////////////////////////////
 
-let baseURL = `http://localhost:3003/filmfinder/`
+let baseURL = `https://filmfinderapp.herokuapp.com/filmfinder/`
+
+if (window.location.href.includes('localhost')) {
+ baseURL = `http://localhost:3003/filmfinder/`
+} else {
+ baseURL = `https://filmfinderapp.herokuapp.com/filmfinder/`
+}
 
 
+let getRecentReleasesURL = baseURL + 'recent_releases/' + cityId
 
 
 let myUser = cookies.get('user')
@@ -152,6 +159,7 @@ class App extends Component {
   //function above to get all movies from collection using test route
 
   getMovie = (movie) => {
+    console.log(movie);
     this.setState({movie: movie})
   }
 
@@ -178,7 +186,18 @@ class App extends Component {
 
 
 
-          <Route exact path='/' component = {Splash} />
+          <Route exact
+          path='/'
+          render={(routeProps) => (
+            <Splash
+            {...routeProps}
+            splash = {this.state.splash}
+            getMovie = {this.getMovie}
+           />
+           )}
+          />
+
+
 
           <Route
             exact
@@ -190,6 +209,8 @@ class App extends Component {
                 currentUser={this.state.userID}
                 movie={this.state.movie}
                 getMovie={this.getMovie}
+                baseURL={baseURL}
+
             />)}
           />
 
@@ -202,6 +223,8 @@ class App extends Component {
                 deleteMovie={this.deleteMovie}
                 movie={this.state.movie}
                 getMovie={this.getMovie}
+                currentUser={this.state.userID}
+                baseURL={baseURL}
               />
             )}
           />
@@ -214,8 +237,13 @@ class App extends Component {
                 baseURL={baseURL}
                 movie={this.state.movie}
                 getMovie={this.getMovie}
+
                 showtimesBaseURL={showtimesBaseURL}
                 showtimesAPIKey={showtimesAPIKey}
+
+                addToDiary={this.addToDiary}
+                currentUser={this.state.userID}
+
               />
             )}
           />

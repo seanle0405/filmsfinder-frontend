@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 
-const baseURL = 'http://localhost:3003/'
+let baseURL = `https://filmfinderapp.herokuapp.com/filmfinder/`
+
+if (window.location.href.includes('localhost')) {
+ baseURL = `http://localhost:3003/filmfinder/`
+} else {
+ baseURL = `https://filmfinderapp.herokuapp.com/filmfinder/`
+}
 
 class Update extends Component {
 		state = {

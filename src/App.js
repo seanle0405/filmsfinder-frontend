@@ -40,6 +40,13 @@ let cityParam = `&city_ids=` + cityId
 
 let baseURL = `https://filmfinderapp.herokuapp.com/filmfinder/`
 
+if (window.location.href.includes('localhost')) {
+ baseURL = `http://localhost:3003/filmfinder/`
+} else {
+ baseURL = `https://filmfinderapp.herokuapp.com/filmfinder/`
+}
+
+
 let getRecentReleasesURL = baseURL + 'recent_releases/' + cityId
 
 
@@ -202,6 +209,7 @@ class App extends Component {
                 currentUser={this.state.userID}
                 movie={this.state.movie}
                 getMovie={this.getMovie}
+                baseURL={baseURL}
 
             />)}
           />
@@ -216,6 +224,7 @@ class App extends Component {
                 movie={this.state.movie}
                 getMovie={this.getMovie}
                 currentUser={this.state.userID}
+                baseURL={baseURL}
               />
             )}
           />

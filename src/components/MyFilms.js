@@ -4,7 +4,7 @@ import WatchedMovies from './WatchedMovies.js'
 import WatchList from './WatchList.js'
 
 
-let baseURL = `https://filmfinderapp.herokuapp.com/filmfinder/`
+
 
 
 class MyFilms extends Component {
@@ -37,6 +37,7 @@ class MyFilms extends Component {
                 deleteMovie={this.props.deleteMovie}
                 movie={this.props.movie}
                 getMovie={this.props.getMovie}
+                baseURL={this.props.baseURL}
                 />
               )}
             />
@@ -51,6 +52,8 @@ class MyFilms extends Component {
                   deleteMovie={this.props.deleteMovie}
                   movie={this.props.movie}
                   getMovie={this.props.getMovie}
+                  baseURL={this.props.baseURL}
+
                   />
                 )}
             />

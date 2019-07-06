@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
-let baseURL = `https://filmfinderapp.herokuapp.com/filmfinder/`
+
 
 class WatchList extends Component {
 

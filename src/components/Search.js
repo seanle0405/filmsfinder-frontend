@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 let showtimesAPIKey = `?apikey=dHNYEAlSVxOXC4Eqy6b8aufIXC7utYnu`
 
-let baseURL = `http://localhost:3003/`
 
 
 class Search extends Component {
@@ -25,7 +24,7 @@ class Search extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const movieQuery = this.state.search
-    fetch(baseURL+ `filmfinder/search/` + movieQuery)
+    fetch(this.props.baseURL + 'search/' + movieQuery)
     .then(data => data.json())
     .then(parsedData => {
       console.log(parsedData);
@@ -96,7 +95,7 @@ class Search extends Component {
           <div className="col-md-8">
             <div className="card-body">
               <h5 className="card-title">{movie.title}</h5>
-              <p className="card-text">
+              <p className="card-text synopsis">
                 {movie.synopsis}
               </p>
               <p className="card-text">

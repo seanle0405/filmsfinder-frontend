@@ -25,7 +25,7 @@ const cookies = new Cookies()
 let currentUser = cookies.get('user')
 
 //// building Splash URL
-let cityId = 3945
+let cityId = 2215
 let releaseDate = '06-01-19'
 let showtimesBaseURL = `https://api.internationalshowtimes.com/v4/`
 let moviesParam = 'movies/'
@@ -83,7 +83,7 @@ class App extends Component {
     fetch(getRecentReleasesURL)
     .then(data => data.json(),
     err => console.log(err))
-    .then(parsedData => this.setState({splash: parsedData.movies}, () => {
+    .then(parsedData => this.setState({splash: parsedData}, () => {
       console.log(this.state.splash)
     }))
   }
@@ -192,7 +192,7 @@ class App extends Component {
             <Splash
             {...routeProps}
             splash = {this.state.splash}
-
+            getMovie = {this.getMovie}
            />
            )}
           />

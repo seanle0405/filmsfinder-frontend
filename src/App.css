@@ -27,13 +27,13 @@ img:hover {
   cursor: pointer
 }
 
-.searchResultsContainer {
+.movieContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.searchresult {
+.movie {
   margin: 0 auto;
   display: flex;
   flex-direction: column;

@@ -4,6 +4,10 @@ import Cookies from 'universal-cookie'
 
 const cookies = new Cookies()
 
+let myUser = cookies.get('user')
+
+
+
 class SignIn extends Component {
 
   state = {
@@ -30,16 +34,26 @@ class SignIn extends Component {
         return response.json()
       })
       .then(json => {
-        this.handleAddCookie(json)
-        this.setState({
-          username: '',
-          password: ''
-        })
+        if (json.foundUser) {
+          this.handleAddCookie(json)
+          this.setState({
+            username: '',
+            password: '',
+            credentialError: false
+          })
+        } else {
+          console.log('password didnt match');
+          this.setState({
+            credentialError: true,
+            username: '',
+            password: ''
+          })
+        }
       })
   }
 
   handleAddCookie = (json) => {
-    console.log(json);
+
     cookies.set('user', json.foundUser, {path:'/'})
     this.props.refreshCurrentUser()
     this.props.getUserData(json.foundUser)
@@ -76,6 +90,11 @@ class SignIn extends Component {
             value='Sign In'
           />
         </form>
+        {
+          this.state.credentialError ?
+          <h1> try again!</h1>:
+          null
+        }
       </div>
     )
   }

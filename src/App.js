@@ -5,8 +5,9 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 
 //importing components and style sheets
+
+import Bootstrap from './bootstrap-4.3.1-dist/css/bootstrap.css'
 import './App.css'
-import Materialized from './materialize/css/materialize.css'
 import Header from './components/Header.js'
 import Search from './components/Search.js'
 import MyFilms from './components/MyFilms.js'
@@ -23,9 +24,7 @@ const cookies = new Cookies()
 
 let currentUser = cookies.get('user')
 
-
 //// building Splash URL
-
 let cityId = 3945
 let releaseDate = '06-01-19'
 let showtimesBaseURL = `https://api.internationalshowtimes.com/v4/`
@@ -40,6 +39,14 @@ let getRecentReleasesURL = showtimesBaseURL+moviesParam+showtimesAPIKey+releaseD
 ////////////////////////////////////////////////////
 
 let baseURL = `http://localhost:3003/filmfinder/`
+
+
+
+
+let myUser = cookies.get('user')
+
+
+
 
 class App extends Component {
   state = {
@@ -146,6 +153,7 @@ class App extends Component {
   getMovie = (movie) => {
     this.setState({movie: movie})
   }
+
 
   render(){
     return (

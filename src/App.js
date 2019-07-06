@@ -5,8 +5,9 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 
 //importing components and style sheets
+
+import Bootstrap from './bootstrap-4.3.1-dist/css/bootstrap.css'
 import './App.css'
-import Materialized from './materialize/css/materialize.css'
 import Header from './components/Header.js'
 import Search from './components/Search.js'
 import MyFilms from './components/MyFilms.js'

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 let showtimesAPIKey = `?apikey=dHNYEAlSVxOXC4Eqy6b8aufIXC7utYnu`
 
-let baseURL = `http://localhost:3003/`
+let baseURL = `https://filmfinderapp.herokuapp.com/filmfinder/`
 
 
 class Search extends Component {
@@ -25,7 +25,7 @@ class Search extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const movieQuery = this.state.search
-    fetch(baseURL+ `filmfinder/search/` + movieQuery)
+    fetch(baseURL + 'search/' + movieQuery)
     .then(data => data.json())
     .then(parsedData => {
       console.log(parsedData);

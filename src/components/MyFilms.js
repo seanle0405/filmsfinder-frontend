@@ -4,7 +4,7 @@ import WatchedMovies from './WatchedMovies.js'
 import WatchList from './WatchList.js'
 
 
-let baseURL = `http://localhost:3003/filmfinder/`
+let baseURL = `https://filmfinderapp.herokuapp.com/filmfinder/`
 
 
 class MyFilms extends Component {

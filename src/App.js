@@ -38,7 +38,7 @@ let cityParam = `&city_ids=` + cityId
 // let getRecentReleasesURL = showtimesBaseURL+moviesParam+showtimesAPIKey+releaseDateParam+countryParam+fieldsParam+cityParam
 ////////////////////////////////////////////////////
 
-let baseURL = `http://localhost:3003/filmfinder/`
+let baseURL = `https://filmfinderapp.herokuapp.com/filmfinder/`
 
 let getRecentReleasesURL = baseURL + 'recent_releases/' + cityId
 

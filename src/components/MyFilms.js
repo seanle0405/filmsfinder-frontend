@@ -13,38 +13,25 @@ class MyFilms extends Component {
   render() {
     return (
       <>
+      {
+        this.props.currentUser ?
+        <>
+          <Link
+            to='/myfilms/'
+            >
+            <h3>My Movies</h3>
+          </Link>
 
-      <>
-        <Link
-          to='/myfilms/'
-          >
-          <h3>My Movies</h3>
-        </Link>
-
-        <Link
-          to='/myfilms/watchlist'
-          >
-          <h3>Watchlist</h3>
-        </Link>
-        <Route
-          exact
-          path='/myfilms'
-          render = {(routeProps) => (
-            <WatchedMovies
-              {...routeProps}
-              userDiary={this.props.userDiary}
-              deleteMovie={this.props.deleteMovie}
-              movie={this.props.movie}
-              getMovie={this.props.getMovie}
-              />
-            )}
-          />
-
+          <Link
+            to='/myfilms/watchlist'
+            >
+            <h3>Watchlist</h3>
+          </Link>
           <Route
             exact
-            path='/myfilms/watchlist'
+            path='/myfilms'
             render = {(routeProps) => (
-              <WatchList
+              <WatchedMovies
                 {...routeProps}
                 userDiary={this.props.userDiary}
                 deleteMovie={this.props.deleteMovie}
@@ -52,14 +39,27 @@ class MyFilms extends Component {
                 getMovie={this.props.getMovie}
                 />
               )}
-          />
+            />
 
+            <Route
+              exact
+              path='/myfilms/watchlist'
+              render = {(routeProps) => (
+                <WatchList
+                  {...routeProps}
+                  userDiary={this.props.userDiary}
+                  deleteMovie={this.props.deleteMovie}
+                  movie={this.props.movie}
+                  getMovie={this.props.getMovie}
+                  />
+                )}
+            />
 
+        </>
+        :
+        <h3> Sign in to add movies to your diary!</h3>
+      }
 
-
-
-
-      </>
 
 
       </>

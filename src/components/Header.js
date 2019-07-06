@@ -1,10 +1,19 @@
 import React, { Component } from 'react'
+import Cookies from 'universal-cookie'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+
+const cookies = new Cookies()
 
 class Header extends Component {
   state = {
     loggedIn: false
   }
+
+  handleLogOut = () => {
+    cookies.remove('user')
+    this.props.refreshCurrentUser()
+  }
+
   render() {
     return (
       <div>
@@ -12,13 +21,26 @@ class Header extends Component {
           <nav>
             <Link to='/'>{ 'Home' }</Link>
             {'  '}
-            <Link to='/myfilms'>{ 'My Films' }</Link>
+            <Link to='/search'>{ 'Search' }</Link>
             {'  '}
-            {/*if logged out, .inks for signup an create account will render*/}
-            <Link to='/SignIn'>{ 'Sign In' }</Link>
+            <Link to='/myfilms'>{ 'My Films'  }</Link>
             {'  '}
-            <Link to='/CreateAccount'>{ 'Create Account' }</Link>
-            {/*if logged in, username and link to log out will render*/}
+            { this.props.currentUser ?
+
+              <Link to='/' refresh= 'true' onClick={ this.handleLogOut }>{ 'Log Out' }</Link>
+              :
+              <>
+
+              <Link to='/SignIn'>{ 'Sign In' }</Link> {' '}
+
+              <Link to='/CreateAccount'>{ 'Create Account' }</Link> {' '}
+
+              </>
+
+            }
+
+
+
           </nav>
       </div>
     )

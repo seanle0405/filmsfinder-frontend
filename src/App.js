@@ -25,7 +25,7 @@ const cookies = new Cookies()
 let currentUser = cookies.get('user')
 
 //// building Splash URL
-let cityId = 3945
+let cityId = 2215
 let releaseDate = '06-01-19'
 let showtimesBaseURL = `https://api.internationalshowtimes.com/v4/`
 let moviesParam = 'movies/'
@@ -35,12 +35,19 @@ let releaseDateParam = '&release_date_from=' + releaseDate
 let countryParam = `&countries=US`
 let fieldsParam = `&all_fields=true`
 let cityParam = `&city_ids=` + cityId
-let getRecentReleasesURL = showtimesBaseURL+moviesParam+showtimesAPIKey+releaseDateParam+countryParam+fieldsParam+cityParam
+// let getRecentReleasesURL = showtimesBaseURL+moviesParam+showtimesAPIKey+releaseDateParam+countryParam+fieldsParam+cityParam
 ////////////////////////////////////////////////////
 
-let baseURL = `http://localhost:3003/filmfinder/`
+let baseURL = `https://filmfinderapp.herokuapp.com/filmfinder/`
+
+if (window.location.href.includes('localhost')) {
+ baseURL = `http://localhost:3003/filmfinder/`
+} else {
+ baseURL = `https://filmfinderapp.herokuapp.com/filmfinder/`
+}
 
 
+let getRecentReleasesURL = baseURL + 'recent_releases/' + cityId
 
 
 let myUser = cookies.get('user')
@@ -76,7 +83,7 @@ class App extends Component {
     fetch(getRecentReleasesURL)
     .then(data => data.json(),
     err => console.log(err))
-    .then(parsedData => this.setState({splash: parsedData.movies}, () => {
+    .then(parsedData => this.setState({splash: parsedData}, () => {
       console.log(this.state.splash)
     }))
   }
@@ -179,18 +186,18 @@ class App extends Component {
 
 
 
-          <Route exact 
-          path='/' 
+          <Route exact
+          path='/'
           render={(routeProps) => (
             <Splash
             {...routeProps}
             splash = {this.state.splash}
-
-           /> 
-           )} 
+            getMovie = {this.getMovie}
+           />
+           )}
           />
-          
-           
+
+
 
           <Route
             exact
@@ -202,6 +209,7 @@ class App extends Component {
                 currentUser={this.state.userID}
                 movie={this.state.movie}
                 getMovie={this.getMovie}
+                baseURL={baseURL}
 
             />)}
           />
@@ -215,6 +223,8 @@ class App extends Component {
                 deleteMovie={this.deleteMovie}
                 movie={this.state.movie}
                 getMovie={this.getMovie}
+                currentUser={this.state.userID}
+                baseURL={baseURL}
               />
             )}
           />
@@ -226,6 +236,8 @@ class App extends Component {
                 {...routeProps}
                 movie={this.state.movie}
                 getMovie={this.getMovie}
+                addToDiary={this.addToDiary}
+                currentUser={this.state.userID}
               />
             )}
           />

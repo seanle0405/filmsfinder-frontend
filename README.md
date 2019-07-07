@@ -9,6 +9,18 @@ An app to keep track of every movie the user has ever seen, as well as movies th
 # Who Would Use It:
 Movie lovers
 
+
+# WireFrames!!
+
+![](wireframe.jpg)
+![](wireframe1.jpg)
+![](wireframe2.jpg)
+
+
+
+
+
+--------------------------------------------------------------------------------
 **App LINK DOWN HERE**
 https://seanle0405.github.io/filmsfinder-frontend/
 

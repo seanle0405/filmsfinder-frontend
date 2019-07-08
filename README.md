@@ -9,7 +9,11 @@ An app to keep track of every movie the user has ever seen, as well as movies th
 # Who Would Use It:
 Movie lovers
 
-
+#User Stories
+  *User will be able to search through database of movies which will give info about that movie
+  *User will be able to mark movies as "watched" or "want to watch", which will save to separate lists
+  *User will be able to see information about movies, including where to stream (if online) or where to see in theaters (if in theaters)
+----------------------------------------------------------------------------------------------------
 # WireFrames!!
 
 ![](wireframe.jpg)
